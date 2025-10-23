@@ -1,6 +1,6 @@
 ---
-title: "___"
-author: "___, ___, ___, ___"
+title: "Cannibalisme chez les serpents"
+author: "LouiseDubrecq, SarahDelapierre, MartinJadouille, Charlotte Desaeger"
 format:
   html:
     code-fold: true
@@ -40,16 +40,16 @@ if (!"tools:tests" %in% search())
 knitr::opts_chunk$set(dev = "ragg_png")
 
 # Configuration de l'environnement
-
+SciViews::R("model")
 ```
 
 <!--% Importez les données que vous aurez préalablement nettoyées, remaniées et labélisées dans le script R nommé `R/import.R`. -->
 
 ```{r import}
 # Lecture des données
-___ <- ___
+snake <- read("data/bandy_exp_data.csv")
 # Tableau des premières et dernières lignes
-tabularise$headtail(___)
+tabularise$headtail(snake)
 ```
 
 ### Description des données
