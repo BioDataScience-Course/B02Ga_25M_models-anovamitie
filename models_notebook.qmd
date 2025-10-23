@@ -1,6 +1,6 @@
 ---
 title: "Cannibalisme chez les serpents"
-author: "LouiseDubrecq, SarahDelapierre, MartinJadouille, Charlotte Desaeger"
+author: "LouiseDubrecq, SarahDelapierre, MartinJadouille, Charlottedesaeger"
 format:
   html:
     code-fold: true
@@ -50,6 +50,10 @@ SciViews::R("model")
 snake <- read("data/bandy_exp_data.csv")
 # Tableau des premières et dernières lignes
 tabularise$headtail(snake)
+#Echantillonage
+set.seed(456)
+snake200 <- snake[sample(1:nrow(snake),200), ]
+skimr::skim(snake200)
 ```
 
 ### Description des données
