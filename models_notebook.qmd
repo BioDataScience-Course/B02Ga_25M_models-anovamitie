@@ -9,6 +9,7 @@ format:
 editor: visual
 lang: fr
 bibliography: references.bib
+---0
 ---
 
 <!--# Ceci est un commentaire. -->
@@ -60,7 +61,10 @@ skimr::skim(snake200)
 
 <!--% Chaque étudiant réalise et interprète un graphique pertinent en lien avec le but fixé et les modèles qui seront réalisés. Graphique et interprétation de l'étudiant #1 ci-dessous. -->
 
-```{r chart1}
+```{r chart1-LouiseDubrecq}
+chart(data = snake200, ~ pattern %fill=% pred_attempt) +
+geom_bar(position = "dodge") +
+  labs(y = "Effectifs", x = "Motif de la proie du serpent", fill = "Attaque")
 
 ```
 
