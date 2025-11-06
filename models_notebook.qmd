@@ -81,12 +81,12 @@ geom_bar(position = "dodge") +
 <!--% Graphique et interprétation de l'étudiant #3 ci-dessous. -->
 
 ```{r chart3}
-chart(data = snake200, adult_mass_g ~ time_to_attack_s %col=% prey_species )+
-  geom_point()+
+chart(data = snake200, adult_mass_g ~ time_to_attack_s %col=% prey_species) +
+  geom_point() +
   labs(x = "Temps avant l'attaque [s]", y = "Masse de l'adulte [g]", col = "Espèce")
 
-chart(data=snake200, adult_svl_cm ~time_to_attack_s %col=% adult_sex)+
-  geom_point()+
+chart(data=snake200, adult_svl_cm ~time_to_attack_s %col=% adult_sex) +
+  geom_point() +
   labs(x = "Temps avant l'attaque [s]", y = "Taille de l'adulte [cm]", col = "Espèce")
 ```
 
