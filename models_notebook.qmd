@@ -85,7 +85,7 @@ geom_bar(position = "dodge") +
 ```{r chart3}
 chart(data = snake200,  ~ prey_species %col=% adult_sex ) +
   geom_bar(position = "dodge") +
-  labs(x = "Temps avant l'attaque [s]", y = "Espèce", col = "Sexe") + 
+  labs(x = "Espèce", y = "Effectif", col = "Sexe", title = "Dénombrement du nombre de proie par espèce et par sexe") + 
   geom_text(
     stat = "count",
     aes(label = after_stat(count)),
