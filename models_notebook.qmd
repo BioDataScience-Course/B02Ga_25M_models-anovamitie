@@ -48,13 +48,9 @@ SciViews::R("model")
 
 ```{r import}
 # Lecture des données
-snake <- read("data/bandy_exp_data.csv")
+snake <- read("data/snake.rds")
 # Tableau des premières et dernières lignes
 tabularise$headtail(snake)
-#Echantillonage
-set.seed(456)
-snake200 <- snake[sample(1:nrow(snake),200), ]
-skimr::skim(snake200)
 ```
 
 ### Description des données
@@ -74,9 +70,19 @@ geom_bar(position = "dodge") +
 
 ```{r chart2}
 
+chart(data = snake200,  ~ prey_species %col=% adult_sex ) +
+  geom_bar(position = "dodge") +
+  labs(x = "Espèce", y = "Effectif", col = "Sexe", title = "Dénombrement du nombre de proie par espèce et par sexe") + 
+  geom_text(
+    stat = "count",
+    aes(label = after_stat(count)),
+    position = position_dodge(width = 0.9),
+    vjust = -0.5  )
+
+
 ```
 
-... interprétation #2...
+Il y a plus d'individus de l'espèce "Kingsnake" que de l'espèce "Corn snake". Il y a plus de mâle (40) que de femelle (29) chez cette dernière espèce tandis que pour l'espèce "Kingsnake", il y a plus de femelles (66) que de mâles (65). Cependant, cette différence est très faible (à 1 individu près).
 
 <!--% Graphique et interprétation de l'étudiant #3 ci-dessous. -->
 
@@ -88,6 +94,7 @@ chart(data = snake200, adult_mass_g ~ time_to_attack_s %col=% prey_species) +
 chart(data=snake200, adult_svl_cm ~time_to_attack_s %col=% adult_sex) +
   geom_point() +
   labs(x = "Temps avant l'attaque [s]", y = "Taille de l'adulte [cm]", col = "Espèce")
+
 ```
 
 ... interprétation #3...
@@ -107,7 +114,22 @@ chart(data=snake200, adult_svl_cm ~time_to_attack_s %col=% adult_sex) +
 #### Régression linéaire 1
 
 ```{r rég linéaire 1}
+#Création d'une nouvelle variable
+snake <- snake %>%
+  smutate(
+    ratio_mass = adult_mass_g / juvenile_mass_g,
+    ratio_svl = adult_svl_cm / juvenile_svl_cm
+  )
 
+
+#Détermination des variables à utiliser
+snake_corr <- correlation(sselect(snake, ratio_mass, ratio_svl, adult_mass_g, adult_svl_cm, juvenile_mass_g, juvenile_svl_cm, time_to_attack_s) )
+
+plot(snake_corr)
+
+
+snake_lm1 <- lm(data = snake, time_to_attack_s ~ ratio_mass + ratio_svl )
+tabularise(summary_(snake_lm1))
 ```
 
 <!--% Ajustez une régression linéaire simple, multiple ou polynomiale par paire d'étudiants dans cette section (donc, deux modèles pour l'équipe de quatre). -->
