@@ -73,7 +73,9 @@ geom_bar(position = "dodge") +
 <!--% Graphique et interprétation de l'étudiant #2 ci-dessous. -->
 
 ```{r chart2}
-
+chart(data = snake200, ~ pattern %fill=% pred_attempt) +
+geom_bar(position = "dodge") +
+  labs(y = "Effectifs", x = "Motif de la proie du serpent", fill = "Attaque")
 ```
 
 ... interprétation #2...
@@ -81,16 +83,19 @@ geom_bar(position = "dodge") +
 <!--% Graphique et interprétation de l'étudiant #3 ci-dessous. -->
 
 ```{r chart3}
-chart(data = snake200, adult_mass_g ~ time_to_attack_s %col=% prey_species )+
-  geom_point()+
-  labs(x = "Temps avant l'attaque [s]", y = "Masse de l'adulte [g]", col = "Espèce")
+chart(data = snake200,  ~ prey_species %col=% adult_sex ) +
+  geom_bar(position = "dodge") +
+  labs(x = "Temps avant l'attaque [s]", y = "Espèce", col = "Sexe") + 
+  geom_text(
+    stat = "count",
+    aes(label = after_stat(count)),
+    position = position_dodge(width = 0.9),
+    vjust = -0.5  )
+    
 
-chart(data=snake200, adult_svl_cm ~time_to_attack_s %col=% adult_sex)+
-  geom_point()+
-  labs(x = "Temps avant l'attaque [s]", y = "Taille de l'adulte [cm]", col = "Espèce")
 ```
 
-... interprétation #3...
+Il y a plus d'individus de l'espèce "Kingsnake" que de l'espèce "Corn snake". Il y a plus de mâle (40) que de femelle (29) chez cette dernière espèce tandis que pour l'espèce "Kingsnake", il y a plus de femelles (66) que de mâles (65). Cependant, cette différence est très faible (à 1 individu près).
 
 <!--% Graphique et interprétation de l'étudiant #4 ci-dessous. -->
 
