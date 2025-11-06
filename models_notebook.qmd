@@ -1,6 +1,6 @@
 ---
 title: "Cannibalisme chez les serpents"
-author: "LouiseDubrecq, SarahDelapierre, MartinJadouille, Charlottedesaeger"
+author: "Louise Dubrecq, Sarah Delapierre, Martin Jadouille, Charlotte Desaeger"
 format:
   html:
     code-fold: true
@@ -77,7 +77,13 @@ skimr::skim(snake200)
 <!--% Graphique et interprétation de l'étudiant #3 ci-dessous. -->
 
 ```{r chart3}
+chart(data = snake200, adult_mass_g ~ time_to_attack_s %col=% prey_species )+
+  geom_point()+
+  labs(x = "Temps avant l'attaque [s]", y = "Masse de l'adulte [g]", col = "Espèce")
 
+chart(data=snake200, adult_svl_cm ~time_to_attack_s %col=% adult_sex)+
+  geom_point()+
+  labs(x = "Temps avant l'attaque [s]", y = "Taille de l'adulte [cm]", col = "Espèce")
 ```
 
 ... interprétation #3...
@@ -96,17 +102,33 @@ skimr::skim(snake200)
 
 #### Régression linéaire 1
 
+```{r rég linéaire 1}
+
+```
+
 <!--% Ajustez une régression linéaire simple, multiple ou polynomiale par paire d'étudiants dans cette section (donc, deux modèles pour l'équipe de quatre). -->
 
 #### Régression linéaire 2
+
+```{r reg linéaire 2}
+
+```
 
 <!--% Ajustez une régression linéaire simple, multiple ou polynomiale par paire d'étudiants dans cette section (donc, deux modèles pour l'équipe de quatre). -->
 
 #### Modèle linéaire 1
 
+```{r modèle linéaire 1}
+
+```
+
 <!--% Construisez un modèle linéaire par paire d'étudiants dans cette section. -->
 
 #### Modèle linéaire 2
+
+```{r modèle linéaire 2}
+
+```
 
 <!--% Construisez un modèle linéaire par paire d'étudiants dans cette section. -->
 
