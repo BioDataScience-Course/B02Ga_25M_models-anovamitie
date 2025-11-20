@@ -36,7 +36,6 @@ bibliography: references.bib
 # Ceci est nécessaire pour les tests SDD, ne pas utiliser dans un "vrai" projet
 if (!"tools:tests" %in% search())
   source(here::here("tests/tools_tests.R"), attach(NULL, name = "tools:tests"))
-
 # Configure Knitr to use AGG as graphic device
 knitr::opts_chunk$set(dev = "ragg_png")
 
@@ -51,11 +50,16 @@ SciViews::R("model")
 snakerev <- read("data/snake.rds")
 # Tableau des premières et dernières lignes
 tabularise$headtail(snakerev)
+```
 
 ### Description des données
 
 <!--% Chaque étudiant réalise et interprète un graphique pertinent en lien avec le but fixé et les modèles qui seront réalisés. Graphique et interprétation de l'étudiant #1 ci-dessous. -->
 
+<<<<<<< HEAD
+=======
+```{r Louise Dubrecq chart}
+>>>>>>> 92a7d79fc72938826431cc6b1cb27a9019b88ecc
 chart(data = snakerev, ~ pattern %fill=% pred_attempt) +
 geom_bar(position = "dodge") +
   labs(y = "Effectifs", x = "Motif de la proie du serpent", fill = "Attaque")
@@ -136,9 +140,17 @@ tabularise(summary_(snakerev_lm1))
 #### Régression linéaire 2
 
 ```{r reg linéaire 2}
-snake_lm2 <- lm(data = snake, juvenile_mass_g ~ juvenile_svl_cm +  )
-tabularise(summary_(snake_lm2))
+
+snakerev_lm2 <- lm(data = snakerev, adult_mass_g ~ adult_svl_cm)
+tabularise(summary_(snakerev_lm2))
+chart(snakerev_lm2)
+chart$residuals(snakerev_lm2)
+
 ```
+
+$$
+`r eq__(snakerev_lm2, use_coefs = TRUE, origdata = snakerev)`
+$$
 
 <!--% Ajustez une régression linéaire simple, multiple ou polynomiale par paire d'étudiants dans cette section (donc, deux modèles pour l'équipe de quatre). -->
 
@@ -154,6 +166,10 @@ tabularise(summary_(snake_lm2))
 
 ```{r modèle linéaire 2}
 
+snakerev_lm4 <- lm(data = snakerev, juvenile_mass_g ~ )
+tabularise(summary_(snakerev_lm2))
+chart(snakerev_lm2)
+chart$residuals(snakerev_lm2)
 ```
 
 <!--% Construisez un modèle linéaire par paire d'étudiants dans cette section. -->
