@@ -48,9 +48,13 @@ SciViews::R("model")
 
 ```{r import}
 # Lecture des données
-snake <- read("data/snake.rds")
+snake <- read("data/bandy_exp_data.csv")
 # Tableau des premières et dernières lignes
 tabularise$headtail(snake)
+#Echantillonage
+set.seed(456)
+snake200 <- snake[sample(1:nrow(snake),200), ]
+skimr::skim(snake200)
 ```
 
 ### Description des données
@@ -58,7 +62,7 @@ tabularise$headtail(snake)
 <!--% Chaque étudiant réalise et interprète un graphique pertinent en lien avec le but fixé et les modèles qui seront réalisés. Graphique et interprétation de l'étudiant #1 ci-dessous. -->
 
 ```{r chart1-LouiseDubrecq}
-chart(data = snake200, ~ pattern %fill=% pred_attempt) +
+chart(data = snake, ~ pattern %fill=% pred_attempt) +
 geom_bar(position = "dodge") +
   labs(y = "Effectifs", x = "Motif de la proie du serpent", fill = "Attaque")
 
@@ -70,31 +74,20 @@ geom_bar(position = "dodge") +
 
 ```{r chart2}
 
-chart(data = snake200,  ~ prey_species %col=% adult_sex ) +
-  geom_bar(position = "dodge") +
-  labs(x = "Espèce", y = "Effectif", col = "Sexe", title = "Dénombrement du nombre de proie par espèce et par sexe") + 
-  geom_text(
-    stat = "count",
-    aes(label = after_stat(count)),
-    position = position_dodge(width = 0.9),
-    vjust = -0.5  )
-
-
 ```
 
-Il y a plus d'individus de l'espèce "Kingsnake" que de l'espèce "Corn snake". Il y a plus de mâle (40) que de femelle (29) chez cette dernière espèce tandis que pour l'espèce "Kingsnake", il y a plus de femelles (66) que de mâles (65). Cependant, cette différence est très faible (à 1 individu près).
+... interprétation #2...
 
 <!--% Graphique et interprétation de l'étudiant #3 ci-dessous. -->
 
 ```{r chart3}
-chart(data = snake200, adult_mass_g ~ time_to_attack_s %col=% prey_species) +
-  geom_point() +
+chart(data = snake200, adult_mass_g ~ time_to_attack_s %col=% prey_species )+
+  geom_point()+
   labs(x = "Temps avant l'attaque [s]", y = "Masse de l'adulte [g]", col = "Espèce")
 
-chart(data=snake200, adult_svl_cm ~time_to_attack_s %col=% adult_sex) +
-  geom_point() +
+chart(data=snake200, adult_svl_cm ~time_to_attack_s %col=% adult_sex)+
+  geom_point()+
   labs(x = "Temps avant l'attaque [s]", y = "Taille de l'adulte [cm]", col = "Espèce")
-
 ```
 
 ... interprétation #3...
@@ -114,9 +107,9 @@ chart(data=snake200, adult_svl_cm ~time_to_attack_s %col=% adult_sex) +
 #### Régression linéaire 1
 
 ```{r rég linéaire 1}
-#Création d'une nouvelle variable
-snake <- snake %>%
-  smutate(
+#Création de 2 nouvelles variables
+snake <- snake%>.%
+  smutate(.,
     ratio_mass = adult_mass_g / juvenile_mass_g,
     ratio_svl = adult_svl_cm / juvenile_svl_cm
   )
@@ -127,7 +120,7 @@ snake_corr <- correlation(sselect(snake, ratio_mass, ratio_svl, adult_mass_g, ad
 
 plot(snake_corr)
 
-
+#Régression linéaire
 snake_lm1 <- lm(data = snake, time_to_attack_s ~ ratio_mass + ratio_svl )
 tabularise(summary_(snake_lm1))
 ```
