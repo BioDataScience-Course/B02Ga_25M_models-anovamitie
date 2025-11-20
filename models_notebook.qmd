@@ -51,9 +51,11 @@ snakerev <- read("data/snake.rds")
 # Tableau des premières et dernières lignes
 tabularise$headtail(snakerev)
 ```
+
 ### Description des données
 
 <!--% Chaque étudiant réalise et interprète un graphique pertinent en lien avec le but fixé et les modèles qui seront réalisés. Graphique et interprétation de l'étudiant #1 ci-dessous. -->
+
 ```{r Louise Dubrecq chart}
 chart(data = snakerev, ~ pattern %fill=% pred_attempt) +
 geom_bar(position = "dodge") +
@@ -81,22 +83,28 @@ chart(data = snakerev,  ~ prey_species %col=% adult_sex ) +
 <!--% Graphique et interprétation de l'étudiant #3 ci-dessous. -->
 
 ```{r chart3}
-chart(data = snakerev, adult_mass_g ~ time_to_attack_s %col=% prey_species) +
+chart(data = snakerev, juvenile_mass_g ~ time_to_attack_s %col=% prey_species) +
   geom_point() +
-  stat_smooth()
-  labs(x = "Temps avant l'attaque [s]", y = "Masse de l'adulte [g]", col = "Espèce")
+  labs(x = "Temps avant l'attaque [s]", y = "Masse du juvénile [g]", col = "Espèce")
 
 chart(data=snakerev, adult_svl_cm ~time_to_attack_s %col=% adult_sex) +
   geom_point() +
   labs(x = "Temps avant l'attaque [s]", y = "Taille de l'adulte [cm]", col = "Espèce")
+
 ```
 
-... interprétation #3...
+-   La masse des juvéniles n'influence pas le temps d'attaque.
+
+-   L'espèce "cornsnake" se fait presque toujours attaqué comparé à l'espèce "kingsnake".
 
 <!--% Graphique et interprétation de l'étudiant #4 ci-dessous. -->
 
 ```{r chart4}
-
+chart(data=snakerev, juvenile_svl_cm ~time_to_attack_s %col=% juvenile_sex) +
+  geom_point() +
+  labs(x = "Temps avant l'attaque [s]", y = "Taille de l'adulte [cm]", col = "Espèce")
+chart(data =snakerev, experiment ~ time_to_attack_s %col=% prey_species) + 
+  geom_point()
 ```
 
 ... interprétation #4...
@@ -158,9 +166,15 @@ $$
 #### Régression linéaire 2
 
 ```{r reg linéaire 2}
-snake_lm2 <- lm(data = snake, juvenile_mass_g ~ juvenile_svl_cm +  )
-tabularise(summary_(snake_lm2))
+snakerev_lm2 <- lm(data = snakerev, adult_mass_g ~ adult_svl_cm)
+tabularise(summary_(snakerev_lm2))
+chart(snakerev_lm2)
+chart$residuals(snakerev_lm2)
 ```
+
+$$
+`r eq__(snakerev_lm2, use_coefs = TRUE, origdata = snakerev)`
+$$
 
 <!--% Ajustez une régression linéaire simple, multiple ou polynomiale par paire d'étudiants dans cette section (donc, deux modèles pour l'équipe de quatre). -->
 
@@ -176,7 +190,8 @@ summary(snake_mod1_lm) |>tabularise()
 #### Modèle linéaire 2
 
 ```{r modèle linéaire 2}
-
+snakerev_lm4 <- lm(data = snakerev, time_to_attack_s ~ painted + pred_attempt)
+tabularise(summary_(snakerev_lm4))
 ```
 
 <!--% Construisez un modèle linéaire par paire d'étudiants dans cette section. -->
@@ -193,6 +208,18 @@ summary(snake_mod1_gen) |>tabularise()
 #### Modèle linéaire généralisé et/ou mixte 2
 
 <!--% Élaborez un modèle linéaire généralisé ou mixte par paire d'étudiants dans cette section. -->
+
+```{r}
+#idée 1
+glm1 <-glm(pred_attempt_bin ~ pattern, data = snakerev, family = binomial)
+summary(glm1)
+
+#idée 2
+glm2 <-glm(pred_attempt_bin ~ pattern + prey_species, 
+    data = snakerev, family = binomial)
+summary(glm2)
+
+```
 
 ## Conclusion
 
