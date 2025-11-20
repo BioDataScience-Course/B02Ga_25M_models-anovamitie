@@ -89,6 +89,7 @@ Il y a plus d'individus de l'espèce "Kingsnake" que de l'espèce "Corn snake". 
 ```{r chart3}
 chart(data = snakerev, adult_mass_g ~ time_to_attack_s %col=% prey_species) +
   geom_point() +
+  stat_smooth()
   labs(x = "Temps avant l'attaque [s]", y = "Masse de l'adulte [g]", col = "Espèce")
 
 chart(data=snakerev, adult_svl_cm ~time_to_attack_s %col=% adult_sex) +
