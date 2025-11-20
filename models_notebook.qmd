@@ -161,11 +161,14 @@ $$
 #### Modèle linéaire 2
 
 ```{r modèle linéaire 2}
-
-snakerev_lm4 <- lm(data = snakerev, juvenile_mass_g ~ )
-tabularise(summary_(snakerev_lm2))
-chart(snakerev_lm2)
-chart$residuals(snakerev_lm2)
+#pattern tt seul ça marche pas.
+#species, que kingsnake
+#snakerev_lm4 <- lm(data = snakerev, time_to_attack_s ~ painted + pred_attempt) 
+#tabularise(summary_(snakerev_lm4)) → R = 0.95
+#snakerev_lm5 <- lm(data = snakerev, time_to_attack_s ~ pattern + painted) 
+#tabularise(summary_(snakerev_lm5)) #→ R = 0.28
+snakerev_lm6 <- lm(data = snakerev, time_to_attack_s ~ pattern * prey_species) 
+tabularise(summary_(snakerev_lm6)) #→ R = 0.28
 ```
 
 <!--% Construisez un modèle linéaire par paire d'étudiants dans cette section. -->
@@ -177,6 +180,18 @@ chart$residuals(snakerev_lm2)
 #### Modèle linéaire généralisé et/ou mixte 2
 
 <!--% Élaborez un modèle linéaire généralisé ou mixte par paire d'étudiants dans cette section. -->
+
+```{r}
+#idée 1
+glm1 <-glm(pred_attempt_bin ~ pattern, data = snakerev, family = binomial)
+summary(glm1)
+
+#idée 2
+glm2 <-glm(pred_attempt_bin ~ pattern + prey_species, 
+    data = snakerev, family = binomial)
+summary(glm2)
+
+```
 
 ## Conclusion
 
