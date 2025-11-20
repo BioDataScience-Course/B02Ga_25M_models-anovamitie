@@ -137,7 +137,8 @@ tabularise(summary_(snake_lm1))
 #### Régression linéaire 2
 
 ```{r reg linéaire 2}
-
+snake_lm2 <- lm(data = snake, juvenile_mass_g ~ juvenile_svl_cm +  )
+tabularise(summary_(snake_lm2))
 ```
 
 <!--% Ajustez une régression linéaire simple, multiple ou polynomiale par paire d'étudiants dans cette section (donc, deux modèles pour l'équipe de quatre). -->
