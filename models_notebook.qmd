@@ -56,10 +56,8 @@ tabularise$headtail(snakerev)
 
 <!--% Chaque étudiant réalise et interprète un graphique pertinent en lien avec le but fixé et les modèles qui seront réalisés. Graphique et interprétation de l'étudiant #1 ci-dessous. -->
 
-<<<<<<< HEAD
-=======
+
 ```{r Louise Dubrecq chart}
->>>>>>> 92a7d79fc72938826431cc6b1cb27a9019b88ecc
 chart(data = snakerev, ~ pattern %fill=% pred_attempt) +
 geom_bar(position = "dodge") +
   labs(y = "Effectifs", x = "Motif de la proie du serpent", fill = "Attaque")
@@ -168,20 +166,8 @@ $$
 #### Modèle linéaire 2
 
 ```{r modèle linéaire 2}
-<<<<<<< HEAD
-
 snakerev_lm4 <- lm(data = snakerev, time_to_attack_s ~ painted + pred_attempt)
 tabularise(summary_(snakerev_lm4))
-=======
-#pattern tt seul ça marche pas.
-#species, que kingsnake
-#snakerev_lm4 <- lm(data = snakerev, time_to_attack_s ~ painted + pred_attempt) 
-#tabularise(summary_(snakerev_lm4)) → R = 0.95
-#snakerev_lm5 <- lm(data = snakerev, time_to_attack_s ~ pattern + painted) 
-#tabularise(summary_(snakerev_lm5)) #→ R = 0.28
-snakerev_lm6 <- lm(data = snakerev, time_to_attack_s ~ pattern * prey_species) 
-tabularise(summary_(snakerev_lm6)) #→ R = 0.28
->>>>>>> 21f3c92144826a59f78a4d212465d157ef8fdbd2
 ```
 
 <!--% Construisez un modèle linéaire par paire d'étudiants dans cette section. -->
