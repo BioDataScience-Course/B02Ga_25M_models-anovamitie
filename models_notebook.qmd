@@ -56,7 +56,6 @@ tabularise$headtail(snakerev)
 
 <!--% Chaque étudiant réalise et interprète un graphique pertinent en lien avec le but fixé et les modèles qui seront réalisés. Graphique et interprétation de l'étudiant #1 ci-dessous. -->
 
-
 ```{r Louise Dubrecq chart}
 chart(data = snakerev, ~ pattern %fill=% pred_attempt) +
 geom_bar(position = "dodge") +
