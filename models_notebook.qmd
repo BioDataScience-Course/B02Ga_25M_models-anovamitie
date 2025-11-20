@@ -115,19 +115,43 @@ snakerev <- snakerev %>%
     ratio_mass = adult_mass_g / juvenile_mass_g,
     ratio_svl = adult_svl_cm / juvenile_svl_cm
   )
+snakerev <- labelise(snakerev, 
+  label = list(
+    ratio_mass = "Rapport entre la masse de l'adulte et du juvénile",
+    ratio_svl = "Rapport entre la taille de l'adulte et du juvénile"), 
+  units=list(
+      ratio_mass = "NA",
+    ratio_svl = "NA"
+  ))
+
+#On vire ceux qui n'attaque pas car pas intéressant
+snake_only_attaque <- snakerev %>%
+  filter(time_to_attack_s < 900)
 
 
 #Détermination des variables à utiliser
-snakerev_corr <- correlation(sselect(snakerev, ratio_mass, ratio_svl, adult_mass_g, adult_svl_cm, juvenile_mass_g, juvenile_svl_cm, time_to_attack_s) )
+snakerev_corr <- correlation(sselect(snake_only_attaque, ratio_mass, ratio_svl, adult_mass_g, adult_svl_cm, juvenile_mass_g, juvenile_svl_cm, time_to_attack_s) )
 
 plot(snakerev_corr)
 
 
-
-snakerev_lm1 <- lm(data = snakerev, time_to_attack_s ~ ratio_mass + ratio_svl )
+#2 régression intéressante
+snakerev_lm1 <- lm(data = snake_only_attaque, time_to_attack_s ~ ratio_mass)
 tabularise(summary_(snakerev_lm1))
 
+snakerev_lm1.2 <- lm(data = snake_only_attaque, time_to_attack_s ~ ratio_mass + ratio_svl)
+tabularise(summary_(snakerev_lm1.2))
+
+chart(snakerev_lm1)
+chart$residuals(snakerev_lm1)
+
 ```
+
+$$
+`r eq__(snakerev_lm1.2, use_coefs = TRUE)`
+$$ 
+
+
 
 <!--% Ajustez une régression linéaire simple, multiple ou polynomiale par paire d'étudiants dans cette section (donc, deux modèles pour l'équipe de quatre). -->
 
@@ -143,7 +167,8 @@ tabularise(summary_(snake_lm2))
 #### Modèle linéaire 1
 
 ```{r modèle linéaire 1}
-
+snake_mod1_lm <- lm(data = snakerev, juvenile_mass_g ~ prey_species)
+summary(snake_mod1_lm) |>tabularise()
 ```
 
 <!--% Construisez un modèle linéaire par paire d'étudiants dans cette section. -->
@@ -159,6 +184,11 @@ tabularise(summary_(snake_lm2))
 #### Modèle linéaire généralisé et/ou mixte 1
 
 <!--% Élaborez un modèle linéaire généralisé ou mixte par paire d'étudiants dans cette section. -->
+```{r}
+snake_mod1_gen <- glm(data = snakerev, ratio_mass ~ prey_species, family = gaussian)
+summary(snake_mod1_gen) |>tabularise()
+```
+
 
 #### Modèle linéaire généralisé et/ou mixte 2
 
