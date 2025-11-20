@@ -36,7 +36,6 @@ bibliography: references.bib
 # Ceci est nécessaire pour les tests SDD, ne pas utiliser dans un "vrai" projet
 if (!"tools:tests" %in% search())
   source(here::here("tests/tools_tests.R"), attach(NULL, name = "tools:tests"))
-
 # Configure Knitr to use AGG as graphic device
 knitr::opts_chunk$set(dev = "ragg_png")
 
@@ -51,12 +50,11 @@ SciViews::R("model")
 snakerev <- read("data/snake.rds")
 # Tableau des premières et dernières lignes
 tabularise$headtail(snakerev)
-
+```
 ### Description des données
 
 <!--% Chaque étudiant réalise et interprète un graphique pertinent en lien avec le but fixé et les modèles qui seront réalisés. Graphique et interprétation de l'étudiant #1 ci-dessous. -->
-
-```{r chart1-LouiseDubrecq}
+```{r Louise Dubrecq chart}
 chart(data = snakerev, ~ pattern %fill=% pred_attempt) +
 geom_bar(position = "dodge") +
   labs(y = "Effectifs", x = "Motif de la proie du serpent", fill = "Attaque")
