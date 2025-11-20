@@ -56,7 +56,6 @@ tabularise$headtail(snakerev)
 
 <!--% Chaque étudiant réalise et interprète un graphique pertinent en lien avec le but fixé et les modèles qui seront réalisés. Graphique et interprétation de l'étudiant #1 ci-dessous. -->
 
-```{r chart1-LouiseDubrecq}
 chart(data = snakerev, ~ pattern %fill=% pred_attempt) +
 geom_bar(position = "dodge") +
   labs(y = "Effectifs", x = "Motif de la proie du serpent", fill = "Attaque")
@@ -83,17 +82,18 @@ chart(data = snakerev,  ~ prey_species %col=% adult_sex ) +
 <!--% Graphique et interprétation de l'étudiant #3 ci-dessous. -->
 
 ```{r chart3}
-chart(data = snakerev, adult_mass_g ~ time_to_attack_s %col=% prey_species) +
+chart(data = snakerev, juvenile_mass_g ~ time_to_attack_s %col=% prey_species) +
   geom_point() +
-  stat_smooth()
-  labs(x = "Temps avant l'attaque [s]", y = "Masse de l'adulte [g]", col = "Espèce")
+  labs(x = "Temps avant l'attaque [s]", y = "Masse du juvénile [g]", col = "Espèce")
 
 chart(data=snakerev, adult_svl_cm ~time_to_attack_s %col=% adult_sex) +
   geom_point() +
   labs(x = "Temps avant l'attaque [s]", y = "Taille de l'adulte [cm]", col = "Espèce")
 ```
 
-... interprétation #3...
+-   La masse des juvéniles n'influence pas le temps d'attaque.
+
+-   L'espèce "cornsnake" se fait presque toujours attaqué comparé à l'espèce "kingsnake".
 
 <!--% Graphique et interprétation de l'étudiant #4 ci-dessous. -->
 
