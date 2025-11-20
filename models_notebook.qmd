@@ -56,7 +56,10 @@ tabularise$headtail(snakerev)
 
 <!--% Chaque étudiant réalise et interprète un graphique pertinent en lien avec le but fixé et les modèles qui seront réalisés. Graphique et interprétation de l'étudiant #1 ci-dessous. -->
 
+<<<<<<< HEAD
+=======
 ```{r Louise Dubrecq chart}
+>>>>>>> 92a7d79fc72938826431cc6b1cb27a9019b88ecc
 chart(data = snakerev, ~ pattern %fill=% pred_attempt) +
 geom_bar(position = "dodge") +
   labs(y = "Effectifs", x = "Motif de la proie du serpent", fill = "Attaque")
@@ -83,13 +86,19 @@ chart(data = snakerev,  ~ prey_species %col=% adult_sex ) +
 <!--% Graphique et interprétation de l'étudiant #3 ci-dessous. -->
 
 ```{r chart3}
-chart(data = snakerev, adult_mass_g ~ time_to_attack_s %col=% prey_species) +
+chart(data = snakerev, juvenile_mass_g ~ time_to_attack_s %col=% prey_species) +
   geom_point() +
-  stat_smooth()
-  labs(x = "Temps avant l'attaque [s]", y = "Masse de l'adulte [g]", col = "Espèce")
+  labs(x = "Temps avant l'attaque [s]", y = "Masse du juvénile [g]", col = "Espèce")
+
+chart(data=snakerev, adult_svl_cm ~time_to_attack_s %col=% adult_sex) +
+  geom_point() +
+  labs(x = "Temps avant l'attaque [s]", y = "Taille de l'adulte [cm]", col = "Espèce")
+
 ```
 
-... interprétation #3...
+-   La masse des juvéniles n'influence pas le temps d'attaque.
+
+-   L'espèce "cornsnake" se fait presque toujours attaqué comparé à l'espèce "kingsnake".
 
 <!--% Graphique et interprétation de l'étudiant #4 ci-dessous. -->
 
@@ -159,9 +168,20 @@ $$
 #### Modèle linéaire 2
 
 ```{r modèle linéaire 2}
+<<<<<<< HEAD
 
 snakerev_lm4 <- lm(data = snakerev, time_to_attack_s ~ painted + pred_attempt)
 tabularise(summary_(snakerev_lm4))
+=======
+#pattern tt seul ça marche pas.
+#species, que kingsnake
+#snakerev_lm4 <- lm(data = snakerev, time_to_attack_s ~ painted + pred_attempt) 
+#tabularise(summary_(snakerev_lm4)) → R = 0.95
+#snakerev_lm5 <- lm(data = snakerev, time_to_attack_s ~ pattern + painted) 
+#tabularise(summary_(snakerev_lm5)) #→ R = 0.28
+snakerev_lm6 <- lm(data = snakerev, time_to_attack_s ~ pattern * prey_species) 
+tabularise(summary_(snakerev_lm6)) #→ R = 0.28
+>>>>>>> 21f3c92144826a59f78a4d212465d157ef8fdbd2
 ```
 
 <!--% Construisez un modèle linéaire par paire d'étudiants dans cette section. -->
@@ -173,6 +193,18 @@ tabularise(summary_(snakerev_lm4))
 #### Modèle linéaire généralisé et/ou mixte 2
 
 <!--% Élaborez un modèle linéaire généralisé ou mixte par paire d'étudiants dans cette section. -->
+
+```{r}
+#idée 1
+glm1 <-glm(pred_attempt_bin ~ pattern, data = snakerev, family = binomial)
+summary(glm1)
+
+#idée 2
+glm2 <-glm(pred_attempt_bin ~ pattern + prey_species, 
+    data = snakerev, family = binomial)
+summary(glm2)
+
+```
 
 ## Conclusion
 
