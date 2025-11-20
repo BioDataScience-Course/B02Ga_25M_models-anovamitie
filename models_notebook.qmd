@@ -87,11 +87,12 @@ Il y a plus d'individus de l'espèce "Kingsnake" que de l'espèce "Corn snake". 
 <!--% Graphique et interprétation de l'étudiant #3 ci-dessous. -->
 
 ```{r chart3}
-chart(data = snake200, adult_mass_g ~ time_to_attack_s %col=% prey_species) +
+chart(data = snake, adult_mass_g ~ time_to_attack_s | prey_species) +
   geom_point() +
+  stat_smooth()
   labs(x = "Temps avant l'attaque [s]", y = "Masse de l'adulte [g]", col = "Espèce")
 
-chart(data=snake200, adult_svl_cm ~time_to_attack_s %col=% adult_sex) +
+chart(data=snake, adult_svl_cm ~time_to_attack_s %col=% adult_sex) +
   geom_point() +
   labs(x = "Temps avant l'attaque [s]", y = "Taille de l'adulte [cm]", col = "Espèce")
 
