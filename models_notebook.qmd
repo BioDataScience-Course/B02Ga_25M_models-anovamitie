@@ -1,6 +1,6 @@
 ---
 title: "Cannibalisme chez les serpents"
-author: "Louise Dubrecq, Sarah Delapierre, Martin Jadouille, Charlotte Desaeger"
+author: "Louise Dubrecq, Sarah Delapierre, Martin Jadouille, Charlotte De Saeger"
 format:
   html:
     code-fold: true
@@ -73,7 +73,14 @@ geom_bar(position = "dodge") +
 <!--% Graphique et interprétation de l'étudiant #2 ci-dessous. -->
 
 ```{r chart2}
-
+chart(data = snake,  ~ prey_species %col=% adult_sex ) +
+  geom_bar(position = "dodge") +
+  labs(x = "Espèce", y = "Effectif", col = "Sexe", title = "Dénombrement du nombre de proie par espèce et par sexe") + 
+  geom_text(
+    stat = "count",
+    aes(label = after_stat(count)),
+    position = position_dodge(width = 0.9),
+    vjust = -0.5  )
 ```
 
 ... interprétation #2...
@@ -81,12 +88,15 @@ geom_bar(position = "dodge") +
 <!--% Graphique et interprétation de l'étudiant #3 ci-dessous. -->
 
 ```{r chart3}
-chart(data = snake200, adult_mass_g ~ time_to_attack_s %col=% prey_species )+
-  geom_point()+
+
+chart(data = snake, adult_mass_g ~ time_to_attack_s %col=% prey_species) +
+
+  geom_point() +
+  stat_smooth()
   labs(x = "Temps avant l'attaque [s]", y = "Masse de l'adulte [g]", col = "Espèce")
 
-chart(data=snake200, adult_svl_cm ~time_to_attack_s %col=% adult_sex)+
-  geom_point()+
+chart(data=snake, adult_svl_cm ~time_to_attack_s %col=% adult_sex) +
+  geom_point() +
   labs(x = "Temps avant l'attaque [s]", y = "Taille de l'adulte [cm]", col = "Espèce")
 ```
 
