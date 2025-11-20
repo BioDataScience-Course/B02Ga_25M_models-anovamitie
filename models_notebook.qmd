@@ -51,6 +51,7 @@ snakerev <- read("data/snake.rds")
 # Tableau des premières et dernières lignes
 tabularise$headtail(snakerev)
 ```
+
 ### Description des données
 
 <!--% Chaque étudiant réalise et interprète un graphique pertinent en lien avec le but fixé et les modèles qui seront réalisés. Graphique et interprétation de l'étudiant #1 ci-dessous. -->
@@ -135,15 +136,17 @@ tabularise(summary_(snakerev_lm1))
 #### Régression linéaire 2
 
 ```{r reg linéaire 2}
-snakerev_lm2 <- lm(data = snakerev, juvenile_mass_g ~ juvenile_svl_cm )
+
+snakerev_lm2 <- lm(data = snakerev, adult_mass_g ~ adult_svl_cm)
 tabularise(summary_(snakerev_lm2))
 chart(snakerev_lm2)
+chart$residuals(snakerev_lm2)
 
+```
 
 $$
 `r eq__(snakerev_lm2, use_coefs = TRUE, origdata = snakerev)`
 $$
-```
 
 <!--% Ajustez une régression linéaire simple, multiple ou polynomiale par paire d'étudiants dans cette section (donc, deux modèles pour l'équipe de quatre). -->
 
@@ -159,6 +162,10 @@ $$
 
 ```{r modèle linéaire 2}
 
+snakerev_lm4 <- lm(data = snakerev, juvenile_mass_g ~ )
+tabularise(summary_(snakerev_lm2))
+chart(snakerev_lm2)
+chart$residuals(snakerev_lm2)
 ```
 
 <!--% Construisez un modèle linéaire par paire d'étudiants dans cette section. -->
