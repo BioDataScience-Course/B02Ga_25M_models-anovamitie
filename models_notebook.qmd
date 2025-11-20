@@ -48,9 +48,9 @@ SciViews::R("model")
 
 ```{r import}
 # Lecture des données
-snake <- read("data/snake.rds")
+snakerev <- read("data/snake.rds")
 # Tableau des premières et dernières lignes
-tabularise$headtail(snake)
+tabularise$headtail(snakerev)
 ```
 
 ### Description des données
@@ -58,7 +58,7 @@ tabularise$headtail(snake)
 <!--% Chaque étudiant réalise et interprète un graphique pertinent en lien avec le but fixé et les modèles qui seront réalisés. Graphique et interprétation de l'étudiant #1 ci-dessous. -->
 
 ```{r chart1-LouiseDubrecq}
-chart(data = snake, ~ pattern %fill=% pred_attempt) +
+chart(data = snakerev, ~ pattern %fill=% pred_attempt) +
 geom_bar(position = "dodge") +
   labs(y = "Effectifs", x = "Motif de la proie du serpent", fill = "Attaque")
 
@@ -70,7 +70,7 @@ geom_bar(position = "dodge") +
 
 ```{r chart2}
 
-chart(data = snake,  ~ prey_species %col=% adult_sex ) +
+chart(data = snakerev,  ~ prey_species %col=% adult_sex ) +
   geom_bar(position = "dodge") +
   labs(x = "Espèce", y = "Effectif", col = "Sexe", title = "Dénombrement du nombre de proie par espèce et par sexe") + 
   geom_text(
@@ -87,11 +87,11 @@ Il y a plus d'individus de l'espèce "Kingsnake" que de l'espèce "Corn snake". 
 <!--% Graphique et interprétation de l'étudiant #3 ci-dessous. -->
 
 ```{r chart3}
-chart(data = snake, adult_mass_g ~ time_to_attack_s %col=% prey_species) +
+chart(data = snakerev, adult_mass_g ~ time_to_attack_s %col=% prey_species) +
   geom_point() +
   labs(x = "Temps avant l'attaque [s]", y = "Masse de l'adulte [g]", col = "Espèce")
 
-chart(data=snake, adult_svl_cm ~time_to_attack_s %col=% adult_sex) +
+chart(data=snakerev, adult_svl_cm ~time_to_attack_s %col=% adult_sex) +
   geom_point() +
   labs(x = "Temps avant l'attaque [s]", y = "Taille de l'adulte [cm]", col = "Espèce")
 
@@ -115,7 +115,7 @@ chart(data=snake, adult_svl_cm ~time_to_attack_s %col=% adult_sex) +
 
 ```{r rég linéaire 1}
 #Création d'une nouvelle variable
-snake <- snake %>%
+snakerev <- snakerev %>%
   smutate(
     ratio_mass = adult_mass_g / juvenile_mass_g,
     ratio_svl = adult_svl_cm / juvenile_svl_cm
@@ -123,13 +123,13 @@ snake <- snake %>%
 
 
 #Détermination des variables à utiliser
-snake_corr <- correlation(sselect(snake, ratio_mass, ratio_svl, adult_mass_g, adult_svl_cm, juvenile_mass_g, juvenile_svl_cm, time_to_attack_s) )
+snakerev_corr <- correlation(sselect(snakerev, ratio_mass, ratio_svl, adult_mass_g, adult_svl_cm, juvenile_mass_g, juvenile_svl_cm, time_to_attack_s) )
 
-plot(snake_corr)
+plot(snakerev_corr)
 
 
-snake_lm1 <- lm(data = snake, time_to_attack_s ~ ratio_mass + ratio_svl )
-tabularise(summary_(snake_lm1))
+snakerev_lm1 <- lm(data = snakerev, time_to_attack_s ~ ratio_mass + ratio_svl )
+tabularise(summary_(snakerev_lm1))
 ```
 
 <!--% Ajustez une régression linéaire simple, multiple ou polynomiale par paire d'étudiants dans cette section (donc, deux modèles pour l'équipe de quatre). -->
