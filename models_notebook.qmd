@@ -87,10 +87,6 @@ chart(data = snakerev, adult_mass_g ~ time_to_attack_s %col=% prey_species) +
   geom_point() +
   stat_smooth()
   labs(x = "Temps avant l'attaque [s]", y = "Masse de l'adulte [g]", col = "Espèce")
-
-chart(data=snakerev, adult_svl_cm ~time_to_attack_s %col=% adult_sex) +
-  geom_point() +
-  labs(x = "Temps avant l'attaque [s]", y = "Taille de l'adulte [cm]", col = "Espèce")
 ```
 
 ... interprétation #3...
@@ -98,7 +94,11 @@ chart(data=snakerev, adult_svl_cm ~time_to_attack_s %col=% adult_sex) +
 <!--% Graphique et interprétation de l'étudiant #4 ci-dessous. -->
 
 ```{r chart4}
-
+chart(data=snakerev, juvenile_svl_cm ~time_to_attack_s %col=% juvenile_sex) +
+  geom_point() +
+  labs(x = "Temps avant l'attaque [s]", y = "Taille de l'adulte [cm]", col = "Espèce")
+chart(data =snakerev, experiment ~ time_to_attack_s %col=% prey_species) + 
+  geom_point()
 ```
 
 ... interprétation #4...
@@ -136,12 +136,10 @@ tabularise(summary_(snakerev_lm1))
 #### Régression linéaire 2
 
 ```{r reg linéaire 2}
-
 snakerev_lm2 <- lm(data = snakerev, adult_mass_g ~ adult_svl_cm)
 tabularise(summary_(snakerev_lm2))
 chart(snakerev_lm2)
 chart$residuals(snakerev_lm2)
-
 ```
 
 $$
@@ -162,10 +160,8 @@ $$
 
 ```{r modèle linéaire 2}
 
-snakerev_lm4 <- lm(data = snakerev, juvenile_mass_g ~ )
-tabularise(summary_(snakerev_lm2))
-chart(snakerev_lm2)
-chart$residuals(snakerev_lm2)
+snakerev_lm4 <- lm(data = snakerev, time_to_attack_s ~ painted + pred_attempt)
+tabularise(summary_(snakerev_lm4))
 ```
 
 <!--% Construisez un modèle linéaire par paire d'étudiants dans cette section. -->
