@@ -13,7 +13,7 @@ snake200 <- snake[sample(1:nrow(snake),200), ]
 #Description brève des données remaniées
 skimr::skim(snake200)
 # Etape 4 : Ajout des labels et des unités --------------------------------
-snake200 <- labelise(snake,
+snake200 <- labelise(snake200,
   label = list(
     experiment = "Type d'expérience",
     date = "Date de l'expérience",
