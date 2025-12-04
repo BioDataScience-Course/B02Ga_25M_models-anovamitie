@@ -157,9 +157,9 @@ chart$residuals(snakerev_lm1)
 
 $$
 `r eq__(snakerev_lm1.2, use_coefs = TRUE)`
-$$ 
+$$
 
-
+Mettre que c'est pas pertinent et pourquoi est ce qu'on a tester ça ( genre truc biologique les grand attaque les grands...)
 
 <!--% Ajustez une régression linéaire simple, multiple ou polynomiale par paire d'étudiants dans cette section (donc, deux modèles pour l'équipe de quatre). -->
 
@@ -181,7 +181,7 @@ $$
 #### Modèle linéaire 1
 
 ```{r modèle linéaire 1}
-snake_mod1_lm <- lm(data = snakerev, juvenile_mass_g ~ prey_species)
+snake_mod1_lm <- lm(data = snakerev, time_to_attack_s ~ pattern + pred_attempt )
 summary(snake_mod1_lm) |>tabularise()
 ```
 
@@ -199,11 +199,11 @@ tabularise(summary_(snakerev_lm4))
 #### Modèle linéaire généralisé et/ou mixte 1
 
 <!--% Élaborez un modèle linéaire généralisé ou mixte par paire d'étudiants dans cette section. -->
+
 ```{r}
 snake_mod1_gen <- glm(data = snakerev, ratio_mass ~ prey_species, family = gaussian)
 summary(snake_mod1_gen) |>tabularise()
 ```
-
 
 #### Modèle linéaire généralisé et/ou mixte 2
 
