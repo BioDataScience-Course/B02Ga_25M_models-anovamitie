@@ -27,7 +27,11 @@ Le jeu de données utilisé dans ce document est tiré d'une recherche sur le ca
 
 <!--% Indiquez ici d'où viennent les données et aussi quel logiciel (et version) vous utilisez pour les analyses. Inspirez-vous des projets du premier module de SDD II. -->
 
-...Matériel et méthodes...
+Les données ont été collectées par (Warwick Nash *et al)* et sont en accès libre (sous licence CC BY 4.0 avec le DOI [10.24432/C55C7W](https://doi.org/10.24432/C55C7W))**.** Toutes les informations sur les données, le déroulé des expériences et le dictionnaire des données sont disponibles dans l'article.
+
+Différente régression linéaire et modèle linéaire sont utilisés afin de modéliser les données. Au préalable, une description des données est réalisée pour les représenter. Le seuil $\alpha$ de tous les tests est fixé à l'avance à 5%.
+
+L'analyse est réalisée avec le logiciel R (`r R.version.string`) et en particulier le package {modelit} version `r packageVersion("modelit")` avec la [SciViews Box 2025](https://www.sciviews.org/software/svbox/) dans [Saturn Cloud](https://saturncloud.io/) (Linux Ubuntu 22.04).
 
 ## Analyses
 
