@@ -115,6 +115,8 @@ En comparant les deux types d'expérience entre eux, nous pouvons observer que l
 
 <!--% Chaque modèle doit être décrit à l'aide d'un graphique et d'un tableau résumant le modèle. Les équations paramétrées de tous les modèles doivent être également présentes. L'analyse des résidus sera réalisée et interprétée pour chaque modèle. -->
 
+<!--% Ajustez une régression linéaire simple, multiple ou polynomiale par paire d'étudiants dans cette section (donc, deux modèles pour l'équipe de quatre). -->
+
 #### Régression linéaire 1
 
 ```{r rég linéaire 1}
@@ -161,7 +163,8 @@ $$
 `r eq__(snakerev_lm1.2, use_coefs = TRUE)`
 $$
 
-<!--% Ajustez une régression linéaire simple, multiple ou polynomiale par paire d'étudiants dans cette section (donc, deux modèles pour l'équipe de quatre). -->
+Mettre que c'est pas pertinent et pourquoi est ce qu'on a tester ça ( genre truc biologique les grand attaque les grands...)
+
 
 #### Régression linéaire 2
 
@@ -182,7 +185,7 @@ L'interprétation du tableau récapitulatif du modèle linéaire nous indique qu
 
 Une analyse visuelle nous informe que la courbe de la régression linéaire ne s'ajuste pas bien dans les données. L'enveloppe de confiance à 95% est étroite et le modèle est estimé avec une précision non acceptable, aucun point n'est recouvert par l'enveloppe.
 
-Ce contraste s'explique par une analyse des résidus très mauvaise. En effet, bien que l'étendue des résidus soit acceptable, il n'y pas linéarité, ni normalité des résidus, ni homoscédasticité. La variance augmente vers 64 en raison de l'influence d'un effet de levier et augmente aussi pour les plus grandes valeurs à cause d'un point ayant une forte distance de cook.
+Ce contraste s'explique par une analyse des résidus très mauvaise. En effet, bien que l'étendue des résidus soit acceptable, il n'y pas linéarité, ni normalité des résidus, ni homoscédasticité. La variance augmente vers 64 en raison de l'influence d'un effet de levier et augmente aussi pour les plus grandes valeurs à cause d'un point ayant une forte distance de cook. Les conditions de linéarité, d'homoscédasticité et de normalité des résidus n'étant pas respectées, le modèle n'est pas valide.
 
 Le modèle a été revu plusieurs fois mais aucun des essais n'a été concluant.
 
@@ -191,7 +194,7 @@ Le modèle a été revu plusieurs fois mais aucun des essais n'a été concluant
 #### Modèle linéaire 1
 
 ```{r modèle linéaire 1}
-snake_mod1_lm <- lm(data = snakerev, juvenile_mass_g ~ prey_species)
+snake_mod1_lm <- lm(data = snakerev, time_to_attack_s ~ pattern + pred_attempt )
 summary(snake_mod1_lm) |>tabularise()
 ```
 
