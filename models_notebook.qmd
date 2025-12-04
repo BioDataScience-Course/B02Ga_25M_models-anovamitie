@@ -165,7 +165,6 @@ $$
 
 Mettre que c'est pas pertinent et pourquoi est ce qu'on a tester ça ( genre truc biologique les grand attaque les grands...)
 
-
 #### Régression linéaire 2
 
 ```{r reg linéaire 2}
