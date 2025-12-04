@@ -100,18 +100,22 @@ chart(data=snakerev, adult_svl_cm ~time_to_attack_s %col=% adult_sex) +
 <!--% Graphique et interprétation de l'étudiant #4 ci-dessous. -->
 
 ```{r chart4}
-chart(data=snakerev, juvenile_svl_cm ~time_to_attack_s %col=% juvenile_sex) +
-  geom_point() +
-  labs(x = "Temps avant l'attaque [s]", y = "Taille de l'adulte [cm]", col = "Espèce")
 chart(data =snakerev, experiment ~ time_to_attack_s %col=% prey_species) + 
-  geom_point()
+  geom_point(alpha = 0.5) +
+  labs(x = "Temps avant l'attaque [s]", y = "Taille de l'adulte [cm]", col = "Espèce")
 ```
 
-... interprétation #4...
+Par transparence, nous pouvons voir que les jeunes serpents de l'espèce kingsnake, des expériences 1 à 4, n'ont un grand taux d'attaque que lorsque le jeune ne présente aucun pattern.
+
+Dans les expériences 5 et 6, avec des jeunes serpents de l'espèce cornsnake, nous pouvons voir que le serpent adulte attaque beaucoup plus rapidement les serpents non peints que les serpents peints.
+
+En comparant les deux types d'expérience entre eux, nous pouvons observer que les serpents sans pattern et les serpents cornsnake sont attaqués beaucoup plus rapidement que les autres serpents.
 
 ### Modélisation
 
 <!--% Chaque modèle doit être décrit à l'aide d'un graphique et d'un tableau résumant le modèle. Les équations paramétrées de tous les modèles doivent être également présentes. L'analyse des résidus sera réalisée et interprétée pour chaque modèle. -->
+
+<!--% Ajustez une régression linéaire simple, multiple ou polynomiale par paire d'étudiants dans cette section (donc, deux modèles pour l'équipe de quatre). -->
 
 #### Régression linéaire 1
 
@@ -132,7 +136,7 @@ snakerev <- labelise(snakerev,
     ratio_svl = "NA"
   ))
 
-#On vire ceux qui n'attaque pas car pas intéressant
+#On vire ceux qui n'attaquent pas car pas intéressant
 snake_only_attaque <- snakerev %>%
   filter(time_to_attack_s < 900)
 
@@ -160,8 +164,10 @@ $$
 $$
 
 Mettre que c'est pas pertinent et pourquoi est ce qu'on a tester ça ( genre truc biologique les grand attaque les grands...)
+<<<<<<< HEAD
 
 <!--% Ajustez une régression linéaire simple, multiple ou polynomiale par paire d'étudiants dans cette section (donc, deux modèles pour l'équipe de quatre). -->
+
 
 #### Régression linéaire 2
 
@@ -182,7 +188,7 @@ L'interprétation du tableau récapitulatif du modèle linéaire nous indique qu
 
 Une analyse visuelle nous informe que la courbe de la régression linéaire ne s'ajuste pas bien dans les données. L'enveloppe de confiance à 95% est étroite et le modèle est estimé avec une précision non acceptable, aucun point n'est recouvert par l'enveloppe.
 
-Ce contraste s'explique par une analyse des résidus très mauvaise. En effet, bien que l'étendue des résidus soit acceptable, il n'y pas linéarité, ni normalité des résidus, ni homoscédasticité. La variance augmente vers 64 en raison de l'influence d'un effet de levier et augmente aussi pour les plus grandes valeurs à cause d'un point ayant une forte distance de cook.
+Ce contraste s'explique par une analyse des résidus très mauvaise. En effet, bien que l'étendue des résidus soit acceptable, il n'y pas linéarité, ni normalité des résidus, ni homoscédasticité. La variance augmente vers 64 en raison de l'influence d'un effet de levier et augmente aussi pour les plus grandes valeurs à cause d'un point ayant une forte distance de cook. Les conditions de linéarité, d'homoscédasticité et de normalité des résidus n'étant pas respectées, le modèle n'est pas valide.
 
 Le modèle a été revu plusieurs fois mais aucun des essais n'a été concluant.
 
