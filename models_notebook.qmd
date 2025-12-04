@@ -50,6 +50,7 @@ SciViews::R("model")
 snakerev <- read("data/snake.rds")
 # Tableau des premières et dernières lignes
 tabularise$headtail(snakerev)
+skimr::skim(snakerev)
 ```
 
 ### Description des données
@@ -157,24 +158,32 @@ chart$residuals(snakerev_lm1)
 
 $$
 `r eq__(snakerev_lm1.2, use_coefs = TRUE)`
-$$ 
-
-
+$$
 
 <!--% Ajustez une régression linéaire simple, multiple ou polynomiale par paire d'étudiants dans cette section (donc, deux modèles pour l'équipe de quatre). -->
 
 #### Régression linéaire 2
 
 ```{r reg linéaire 2}
+#modèle polynomial inutile
 snakerev_lm2 <- lm(data = snakerev, adult_mass_g ~ adult_svl_cm)
 tabularise(summary_(snakerev_lm2))
 chart(snakerev_lm2)
+#quand log(adult_mass_g ), indiquer , origdata = snakerev si chart() ne trouve plus une de mes variables car il ne trouve pas log(variable), origdata reprécise où regarder les données
 chart$residuals(snakerev_lm2)
 ```
 
 $$
 `r eq__(snakerev_lm2, use_coefs = TRUE, origdata = snakerev)`
 $$
+
+L'interprétation du tableau récapitulatif du modèle linéaire nous indique que le modèle est très ajusté avec un R\^2 = 0.98 et qu'il est significatif. (F-stat : 8735 on 1 and 198 df - p value : \<2.22e-16). L'ordonnée à l'origine est significativement différente de 0, par contre, il est faiblement estimée avec un rapport de \~1/6 entre l'écart type et la valeur estimée. La pente est significativement différent de 0 et est estimé avec bonne précision.
+
+Une analyse visuelle nous informe que la courbe de la régression linéaire ne s'ajuste pas bien dans les données. L'enveloppe de confiance à 95% est étroite et le modèle est estimé avec une précision non acceptable, aucun point n'est recouvert par l'enveloppe.
+
+Ce contraste s'explique par une analyse des résidus très mauvaise. En effet, bien que l'étendue des résidus soit acceptable, il n'y pas linéarité, ni normalité des résidus, ni homoscédasticité. La variance augmente vers 64 en raison de l'influence d'un effet de levier et augmente aussi pour les plus grandes valeurs à cause d'un point ayant une forte distance de cook.
+
+Le modèle a été revu plusieurs fois mais aucun des essais n'a été concluant.
 
 <!--% Ajustez une régression linéaire simple, multiple ou polynomiale par paire d'étudiants dans cette section (donc, deux modèles pour l'équipe de quatre). -->
 
@@ -185,6 +194,10 @@ snake_mod1_lm <- lm(data = snakerev, juvenile_mass_g ~ prey_species)
 summary(snake_mod1_lm) |>tabularise()
 ```
 
+$$
+`r eq__(snake_mod1_lm, use_coefs = TRUE, origdata = snakerev)`
+$$
+
 <!--% Construisez un modèle linéaire par paire d'étudiants dans cette section. -->
 
 #### Modèle linéaire 2
@@ -194,16 +207,20 @@ snakerev_lm4 <- lm(data = snakerev, time_to_attack_s ~ painted + pred_attempt)
 tabularise(summary_(snakerev_lm4))
 ```
 
+$$
+`r eq__(snakerev_lm4, use_coefs = TRUE, origdata = snakerev)`
+$$
+
 <!--% Construisez un modèle linéaire par paire d'étudiants dans cette section. -->
 
 #### Modèle linéaire généralisé et/ou mixte 1
 
 <!--% Élaborez un modèle linéaire généralisé ou mixte par paire d'étudiants dans cette section. -->
+
 ```{r}
 snake_mod1_gen <- glm(data = snakerev, ratio_mass ~ prey_species, family = gaussian)
 summary(snake_mod1_gen) |>tabularise()
 ```
-
 
 #### Modèle linéaire généralisé et/ou mixte 2
 
@@ -220,6 +237,10 @@ glm2 <-glm(pred_attempt_bin ~ pattern + prey_species,
 summary(glm2)
 
 ```
+
+$$
+`r eq__(glm2, use_coefs = TRUE, origdata = snakerev)`
+$$
 
 ## Conclusion
 
