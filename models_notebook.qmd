@@ -27,7 +27,7 @@ Le jeu de données utilisé dans ce document est tiré d'une recherche sur le ca
 
 <!--% Indiquez ici d'où viennent les données et aussi quel logiciel (et version) vous utilisez pour les analyses. Inspirez-vous des projets du premier module de SDD II. -->
 
-Les données ont été collectées par (Warwick Nash *et al)* et sont en accès libre (sous licence CC BY 4.0 avec le DOI [10.24432/C55C7W](https://doi.org/10.24432/C55C7W))**.** Toutes les informations sur les données, le déroulé des expériences et le dictionnaire des données sont disponibles dans l'article.
+Les données ont été collectées par *Wu Nicholas* *et al* et sont en accès libre (MIT Licence, <https://doi.org/10.5281/zenodo.5399271>)**.** Toutes les informations sur les données, le déroulé des expériences et le dictionnaire des données sont disponibles dans l'article.
 
 Différente régression linéaire et modèle linéaire sont utilisés afin de modéliser les données. Au préalable, une description des données est réalisée pour les représenter. Le seuil $\alpha$ de tous les tests est fixé à l'avance à 5%.
 
@@ -87,19 +87,31 @@ chart(data = snakerev,  ~ prey_species %col=% adult_sex ) +
 <!--% Graphique et interprétation de l'étudiant #3 ci-dessous. -->
 
 ```{r chart3}
+
 chart(data = snakerev, juvenile_mass_g ~ time_to_attack_s %col=% prey_species) +
   geom_point() +
   labs(x = "Temps avant l'attaque [s]", y = "Masse du juvénile [g]", col = "Espèce")
 
-chart(data=snakerev, adult_svl_cm ~time_to_attack_s %col=% adult_sex) +
-  geom_point() +
-  labs(x = "Temps avant l'attaque [s]", y = "Taille de l'adulte [cm]", col = "Espèce")
 
+
+
+
+a<-chart(data = snakerev,  ~ adult_ID ) +
+  geom_bar(position = "dodge")+
+  coord_flip()+
+  labs(x = "ID de l'adulte", y = "Nombre d'observations")
+b<- chart(data = snakerev,  ~ juvenile_ID ) +
+  geom_bar(position = "dodge")+
+  coord_flip()+
+  labs(x = "ID de l'adulte", y = "Nombre d'observations")
+combine_charts(list(a,b))
 ```
 
 -   La masse des juvéniles n'influence pas le temps d'attaque.
 
--   L'espèce "cornsnake" se fait presque toujours attaqué comparé à l'espèce "kingsnake".
+-   Les juvéniles de l'espèce *kingsnake* ont tous une masse supérieur à celle de l'espèce *cornsnake*.
+
+-   On peut observer qu'il y a indépendance des observations lors des expérience parce que certains juvéniles et tout les adultes sont repris plusieurs fois.
 
 <!--% Graphique et interprétation de l'étudiant #4 ci-dessous. -->
 
