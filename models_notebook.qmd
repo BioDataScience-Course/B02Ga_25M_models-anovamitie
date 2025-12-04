@@ -9,7 +9,6 @@ format:
 editor: visual
 lang: fr
 bibliography: references.bib
----0
 ---
 
 <!--# Ceci est un commentaire. -->
@@ -22,7 +21,7 @@ bibliography: references.bib
 
 <!--% Rédigez une courte introduction de 3 ou 5 phrases qui présente vos données. Ajoutez une phrase de but (que vous remanierez éventuellement en fonction des modèles que vous ajouterez plus tard). Vous pouvez citer la bibliographie en utilisant le formatage Markdown ad hoc et en incluant votre référence au format bibtex dans le fichier references.bib. -->
 
-... Introduction et but...
+Le jeu de données utilisé dans ce document est tiré d'une recherche sur le cannibalisme entre serpents [@wu2021]. Le principal point recherché est de savoir si le pattern sur les jeunes serpents influe sur l'attaque du serpent adulte ou non. En effet, des serpents adulte de l'espèce king snake et de l'espèce cornsnake ont été mis en contact avec des jeunes de chaque espèce afin de voir combien de temps s'écoulait avant l'attaque, s'il y en avait une.
 
 ## Matériel et méthodes
 
@@ -161,6 +160,11 @@ chart$residuals(snakerev_lm1)
 $$
 `r eq__(snakerev_lm1.2, use_coefs = TRUE)`
 $$
+<<<<<<< HEAD
+
+Mettre que c'est pas pertinent et pourquoi est ce qu'on a tester ça ( genre truc biologique les grand attaque les grands...)
+=======
+>>>>>>> a5f22202ed64425d4f18ef5c5066bb2730437b6d
 
 #### Régression linéaire 2
 
@@ -190,7 +194,7 @@ Le modèle a été revu plusieurs fois mais aucun des essais n'a été concluant
 #### Modèle linéaire 1
 
 ```{r modèle linéaire 1}
-snake_mod1_lm <- lm(data = snakerev, juvenile_mass_g ~ prey_species)
+snake_mod1_lm <- lm(data = snakerev, time_to_attack_s ~ pattern + pred_attempt )
 summary(snake_mod1_lm) |>tabularise()
 ```
 
