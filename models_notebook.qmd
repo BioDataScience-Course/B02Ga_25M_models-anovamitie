@@ -54,6 +54,8 @@ snakerev <- read("data/snake.rds")
 # Tableau des premières et dernières lignes
 tabularise$headtail(snakerev)
 skimr::skim(snakerev)
+snakerev<-smutate(snakerev, juvenile_sex = as.factor(juvenile_sex), pattern = as.factor(pattern), painted = as.factor(painted), pred_attempt = as.factor(juvenile_sex), prey_species = as.factor(prey_species), adult_sex  = as.factor(adult_sex)
+)
 ```
 
 ### Description des données
@@ -169,11 +171,8 @@ $$
 
 Mettre que c'est pas pertinent et pourquoi est ce qu'on a tester ça ( genre truc biologique les grand attaque les grands...) \<\<\<\<\<\<\< HEAD
 
-<<<<<<< HEAD
-=======
 <!--% Ajustez une régression linéaire simple, multiple ou polynomiale par paire d'étudiants dans cette section (donc, deux modèles pour l'équipe de quatre). -->
 
->>>>>>> fc4ca0f82617e39db5baf30df47b9f63131ebaa0
 #### Régression linéaire 2
 
 ```{r reg linéaire 2}
@@ -213,7 +212,7 @@ $$
 #### Modèle linéaire 2
 
 ```{r modèle linéaire 2}
-#snakerev_lm4 <- lm(data = snakerev, time_to_attack_s ~ painted + pred_attempt)
+snakerev_lm4 <- lm(data = snakerev, time_to_attack_s ~ painted + pred_attempt)
 
 tabularise(summary_(snakerev_lm4))
 chart$residuals(snakerev_lm4)
