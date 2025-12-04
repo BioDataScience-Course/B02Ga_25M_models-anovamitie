@@ -160,11 +160,9 @@ chart$residuals(snakerev_lm1)
 $$
 `r eq__(snakerev_lm1.2, use_coefs = TRUE)`
 $$
-<<<<<<< HEAD
 
 Mettre que c'est pas pertinent et pourquoi est ce qu'on a tester ça ( genre truc biologique les grand attaque les grands...)
-=======
->>>>>>> a5f22202ed64425d4f18ef5c5066bb2730437b6d
+
 
 #### Régression linéaire 2
 
