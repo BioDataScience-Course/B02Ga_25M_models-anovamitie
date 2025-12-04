@@ -157,9 +157,7 @@ chart$residuals(snakerev_lm1)
 
 $$
 `r eq__(snakerev_lm1.2, use_coefs = TRUE)`
-$$ 
-
-
+$$
 
 <!--% Ajustez une régression linéaire simple, multiple ou polynomiale par paire d'étudiants dans cette section (donc, deux modèles pour l'équipe de quatre). -->
 
@@ -199,26 +197,19 @@ tabularise(summary_(snakerev_lm4))
 #### Modèle linéaire généralisé et/ou mixte 1
 
 <!--% Élaborez un modèle linéaire généralisé ou mixte par paire d'étudiants dans cette section. -->
-```{r}
+
+```{r glm1}
 snake_mod1_gen <- glm(data = snakerev, ratio_mass ~ prey_species, family = gaussian)
 summary(snake_mod1_gen) |>tabularise()
 ```
-
 
 #### Modèle linéaire généralisé et/ou mixte 2
 
 <!--% Élaborez un modèle linéaire généralisé ou mixte par paire d'étudiants dans cette section. -->
 
-```{r}
-#idée 1
-glm1 <-glm(pred_attempt_bin ~ pattern, data = snakerev, family = binomial)
-summary(glm1)
-
-#idée 2
-glm2 <-glm(pred_attempt_bin ~ pattern + prey_species, 
-    data = snakerev, family = binomial)
-summary(glm2)
-
+```{r glm 2}
+glm2 <- glm(data = snakerev, pred_attempt_bin ~ pattern + prey_species, family = binomial)
+tabularise(summary(glm2))
 ```
 
 ## Conclusion
