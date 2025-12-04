@@ -163,11 +163,9 @@ $$
 `r eq__(snakerev_lm1.2, use_coefs = TRUE)`
 $$
 
-Mettre que c'est pas pertinent et pourquoi est ce qu'on a tester ça ( genre truc biologique les grand attaque les grands...)
-<<<<<<< HEAD
+Mettre que c'est pas pertinent et pourquoi est ce qu'on a tester ça ( genre truc biologique les grand attaque les grands...) \<\<\<\<\<\<\< HEAD
 
 <!--% Ajustez une régression linéaire simple, multiple ou polynomiale par paire d'étudiants dans cette section (donc, deux modèles pour l'équipe de quatre). -->
-
 
 #### Régression linéaire 2
 
@@ -229,6 +227,10 @@ $$
 snake_mod1_gen <- glm(data = snakerev, pred_attempt_bin ~ ratio_mass + ratio_svl + 0, family = binomial)
 summary(snake_mod1_gen) |>tabularise()
 ```
+
+$$
+`r eq__(snake_mod1_gen, use_coefs = TRUE)`
+$$
 
 #### Modèle linéaire généralisé et/ou mixte 2
 
