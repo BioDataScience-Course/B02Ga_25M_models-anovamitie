@@ -217,7 +217,11 @@ $$
 
 <!--% Élaborez un modèle linéaire généralisé ou mixte par paire d'étudiants dans cette section. -->
 
+<<<<<<< HEAD
 ```{r}
+=======
+```{r glm1}
+>>>>>>> 88941640b9647d22c6fe878a5c3afab12f27ecd7
 snake_mod1_gen <- glm(data = snakerev, ratio_mass ~ prey_species, family = gaussian)
 summary(snake_mod1_gen) |>tabularise()
 ```
@@ -226,16 +230,9 @@ summary(snake_mod1_gen) |>tabularise()
 
 <!--% Élaborez un modèle linéaire généralisé ou mixte par paire d'étudiants dans cette section. -->
 
-```{r}
-#idée 1
-glm1 <-glm(pred_attempt_bin ~ pattern, data = snakerev, family = binomial)
-summary(glm1)
-
-#idée 2
-glm2 <-glm(pred_attempt_bin ~ pattern + prey_species, 
-    data = snakerev, family = binomial)
-summary(glm2)
-
+```{r glm 2}
+glm2 <- glm(data = snakerev, pred_attempt_bin ~ pattern + prey_species, family = binomial)
+tabularise(summary(glm2))
 ```
 
 $$
