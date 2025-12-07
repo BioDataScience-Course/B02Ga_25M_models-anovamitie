@@ -21,7 +21,7 @@ bibliography: references.bib
 
 <!--% Rédigez une courte introduction de 3 ou 5 phrases qui présente vos données. Ajoutez une phrase de but (que vous remanierez éventuellement en fonction des modèles que vous ajouterez plus tard). Vous pouvez citer la bibliographie en utilisant le formatage Markdown ad hoc et en incluant votre référence au format bibtex dans le fichier references.bib. -->
 
-Le jeu de données utilisé dans ce document est tiré d'une recherche sur le cannibalisme entre serpents [@wu2021]. Le principal point recherché est de savoir si le pattern sur les jeunes serpents influe sur l'attaque du serpent adulte ou non. En effet, des serpents adulte de l'espèce king snake et de l'espèce cornsnake ont été mis en contact avec des jeunes de chaque espèce afin de voir combien de temps s'écoulait avant l'attaque, s'il y en avait une.
+Le jeu de données utilisé dans ce document est tiré d'une recherche sur le cannibalisme entre serpents [@wu2021]. Le principal point recherché est de savoir si la morphologie ou le pattern des jeunes serpents influe sur l'attaque du serpent adulte ou non. En effet, des serpents adultes de l'espèce *king snake* et de l'espèce *cornsnake* ont été mis en contact avec des jeunes de chaque espèce afin de voir combien de temps s'écoulait avant l'attaque, s'il y en avait une.
 
 ## Matériel et méthodes
 
@@ -102,10 +102,10 @@ a<-chart(data = snakerev,  ~ adult_ID ) +
   geom_bar(position = "dodge")+
   coord_flip()+
   labs(x = "ID de l'adulte", y = "Nombre d'observations")
-b<- chart(data = snakerev,  ~ juvenile_ID ) +
-  geom_bar(position = "dodge")+
+b<- chart(data = snakerev,  ~ juvenile_ID) +
+  geom_bar(position = "dodge", width = 0.9)+
   coord_flip()+
-  labs(x = "ID de l'adulte", y = "Nombre d'observations")
+  labs(x = "ID du juvénile", y = "Nombre d'observations")
 combine_charts(list(a,b))
 ```
 
@@ -181,7 +181,7 @@ $$
 `r eq__(snakerev_lm1.2, use_coefs = TRUE)`
 $$
 
-Mettre que c'est pas pertinent et pourquoi est ce qu'on a tester ça ( genre truc biologique les grand attaque les grands...) \<\<\<\<\<\<\< HEAD
+Mettre que c'est pas pertinent et pourquoi est ce qu'on a tester ça ( genre truc biologique les grand attaque les grands..)
 
 <!--% Ajustez une régression linéaire simple, multiple ou polynomiale par paire d'étudiants dans cette section (donc, deux modèles pour l'équipe de quatre). -->
 
