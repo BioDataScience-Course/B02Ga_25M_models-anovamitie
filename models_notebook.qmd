@@ -21,13 +21,13 @@ bibliography: references.bib
 
 <!--% Rédigez une courte introduction de 3 ou 5 phrases qui présente vos données. Ajoutez une phrase de but (que vous remanierez éventuellement en fonction des modèles que vous ajouterez plus tard). Vous pouvez citer la bibliographie en utilisant le formatage Markdown ad hoc et en incluant votre référence au format bibtex dans le fichier references.bib. -->
 
-Le jeu de données utilisé dans ce document est tiré d'une recherche sur le cannibalisme entre serpents [@wu2021]. Le principal point recherché est de savoir si le pattern sur les jeunes serpents influe sur l'attaque du serpent adulte ou non. En effet, des serpents adulte de l'espèce king snake et de l'espèce cornsnake ont été mis en contact avec des jeunes de chaque espèce afin de voir combien de temps s'écoulait avant l'attaque, s'il y en avait une.
+Le jeu de données utilisé dans ce document est tiré d'une recherche sur le cannibalisme entre serpents [@wu2021]. Le principal point recherché est de savoir si la morphologie ou le pattern des jeunes serpents influe sur l'attaque du serpent adulte ou non. En effet, des serpents adultes de l'espèce *king snake* et de l'espèce *cornsnake* ont été mis en contact avec des jeunes de chaque espèce afin de voir combien de temps s'écoulait avant l'attaque, s'il y en avait une.
 
 ## Matériel et méthodes
 
 <!--% Indiquez ici d'où viennent les données et aussi quel logiciel (et version) vous utilisez pour les analyses. Inspirez-vous des projets du premier module de SDD II. -->
 
-Les données ont été collectées par (Warwick Nash *et al)* et sont en accès libre (sous licence CC BY 4.0 avec le DOI [10.24432/C55C7W](https://doi.org/10.24432/C55C7W))**.** Toutes les informations sur les données, le déroulé des expériences et le dictionnaire des données sont disponibles dans l'article.
+Les données ont été collectées par *Wu Nicholas* *et al* et sont en accès libre (MIT Licence, <https://doi.org/10.5281/zenodo.5399271>)**.** Toutes les informations sur les données, le déroulé des expériences et le dictionnaire des données sont disponibles dans l'article.
 
 Différente régression linéaire et modèle linéaire sont utilisés afin de modéliser les données. Au préalable, une description des données est réalisée pour les représenter. Le seuil $\alpha$ de tous les tests est fixé à l'avance à 5%.
 
@@ -89,19 +89,31 @@ Il y a plus d'individus de l'espèce "Kingsnake" que de l'espèce "Corn snake". 
 <!--% Graphique et interprétation de l'étudiant #3 ci-dessous. -->
 
 ```{r chart3}
+
 chart(data = snakerev, juvenile_mass_g ~ time_to_attack_s %col=% prey_species) +
   geom_point() +
   labs(x = "Temps avant l'attaque [s]", y = "Masse du juvénile [g]", col = "Espèce")
 
-chart(data=snakerev, adult_svl_cm ~time_to_attack_s %col=% adult_sex) +
-  geom_point() +
-  labs(x = "Temps avant l'attaque [s]", y = "Taille de l'adulte [cm]", col = "Espèce")
 
+
+
+
+a<-chart(data = snakerev,  ~ adult_ID ) +
+  geom_bar(position = "dodge")+
+  coord_flip()+
+  labs(x = "ID de l'adulte", y = "Nombre d'observations")
+b<- chart(data = snakerev,  ~ juvenile_ID) +
+  geom_bar(position = "dodge", width = 0.9)+
+  coord_flip()+
+  labs(x = "ID du juvénile", y = "Nombre d'observations")
+combine_charts(list(a,b))
 ```
 
 -   La masse des juvéniles n'influence pas le temps d'attaque.
 
--   L'espèce "cornsnake" se fait presque toujours attaqué comparé à l'espèce "kingsnake".
+-   Les juvéniles de l'espèce *kingsnake* ont tous une masse supérieur à celle de l'espèce *cornsnake*.
+
+-   On peut observer qu'il y a indépendance des observations lors des expérience parce que certains juvéniles et tout les adultes sont repris plusieurs fois.
 
 <!--% Graphique et interprétation de l'étudiant #4 ci-dessous. -->
 
@@ -169,7 +181,11 @@ $$
 `r eq__(snakerev_lm1.2, use_coefs = TRUE)`
 $$
 
+<<<<<<< HEAD
 Mettre que c'est pas pertinent et pourquoi est ce qu'on a tester ça ( genre truc biologique les grand attaque les grands...)
+=======
+Mettre que c'est pas pertinent et pourquoi est ce qu'on a tester ça ( genre truc biologique les grand attaque les grands..)
+>>>>>>> f3563c78f14fd40b0ec5dc53c6ebd971c0bf6d3a
 
 <!--% Ajustez une régression linéaire simple, multiple ou polynomiale par paire d'étudiants dans cette section (donc, deux modèles pour l'équipe de quatre). -->
 
