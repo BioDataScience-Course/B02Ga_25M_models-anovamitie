@@ -70,10 +70,9 @@ geom_bar(position = "dodge") +
 
 ```
 
--	Lorsque la proie arbore un pattern normal, le pourcentage d’attaque du serpent prédateur est de 9,8%. Pour le « painted » , il est de 60%, 48% pour une proie peinte de manière aléatoire et 76% pour ceux n’ayant pas de motif.
--	Le taux d’attaque est plus haut quand la proie n’a pas de motif. En outre, lorsque la proie a un pattern normal, il est au plus bas.
--	Les proies peintes de manière aléatoire et celle avec un motif normal sont les 2 ou la non-attaque l’emporte sur l’attaque
-
+-   Lorsque la proie arbore un pattern normal, le pourcentage d’attaque du serpent prédateur est de 9,8%. Pour le « painted » , il est de 60%, 48% pour une proie peinte de manière aléatoire et 76% pour ceux n’ayant pas de motif.
+-   Le taux d’attaque est plus haut quand la proie n’a pas de motif. En outre, lorsque la proie a un pattern normal, il est au plus bas.
+-   Les proies peintes de manière aléatoire et celle avec un motif normal sont les 2 ou la non-attaque l’emporte sur l’attaque
 
 <!--% Graphique et interprétation de l'étudiant #2 ci-dessous. -->
 
@@ -185,7 +184,13 @@ $$
 `r eq__(snakerev_lm1.2, use_coefs = TRUE)`
 $$
 
-Mettre que c'est pas pertinent et pourquoi est ce qu'on a tester ça ( genre truc biologique les grand attaque les grands...)
+Le modèle réalisé n'est pas significatif et pertinent. Seul l'ordonnée à l'origine est significative au seuil alpha de 5%. De plus, le R² est proche de 0 ce qui indique que notre modèle n'est pas bien ajusté.
+
+La visualisation graphique du modèle montre que les points ne sont pas compris dans l'intervalle de confiance, ce qui indique que le modèle n'est pas ajusté de façon acceptable.
+
+L'analyse du graphique composite des résidus nous indique que la normalité des résidus ne suit pas une distribution normale car les résidus s'écarte de manière symétrique aux extrémités. Les résidus sont élevé par rapport aux valeurs prédites. Les points sembla avoir une distance de Cook relativement élevé par contre l'homoscédasticité est respectée.
+
+Ce test a été réalisé car nous pensions qu'il ya aurait une relation entre le temps d'attaque et la relation entre la masse de l'adulte et du juvénile. Pour nous, les adultes de grande taille ciblent des juvéniles proportionnellement plus grands.
 
 <!--% Ajustez une régression linéaire simple, multiple ou polynomiale par paire d'étudiants dans cette section (donc, deux modèles pour l'équipe de quatre). -->
 
@@ -226,18 +231,12 @@ $$
 `r eq__(snake_mod1_lm, use_coefs = TRUE, origdata = snakerev)`
 $$
 
-- Le modèle explique ~ 42% de la variance du temps d’attaque. Cette valeur est suffisante pour des données comportementales.
--	La significativité globale est haute : p = 9.27e-12.
--	Le temps moyen d’attaque pour une proie « corn snake » peinte est de 263,5 secondes (modèle de référence).
--	Les effets du Pattern :
-*Le pattern « painted » n’a pas d’effet significatif au seuil alpha de 5%.
-*L’effet du pattern « painted random » sur le temps d’attaque est significatif au seuil alpha de 5%. Ces proies sont attaquées 186 secondes plus tôt que les « painted ».
-*Également le manque de pattern a un effet très significatif au seuil alpha de 5% avec une attaque moyenne 219 secondes plus tôt que celle de référence.
--	Les effets de l’espèce de proie : 
-il n’y a pas d’effet significatif de l’espèce de la proie sur le temps d’attaque au seuil alpha de 5%
--	Les effets de l’interaction entre le motif et l’espèce :
-L’effet du motif « Painted » sur le temps d’attaque est significativement au seuil alpha de 5% différent selon l’espèce de la proie. Lorsque la proie est peinte et est un kingsnake, elle est attaquée plus vite que dans le cas de référence.
-
+-   Le modèle explique \~ 42% de la variance du temps d’attaque. Cette valeur est suffisante pour des données comportementales.
+-   La significativité globale est haute : p = 9.27e-12.
+-   Le temps moyen d’attaque pour une proie « corn snake » peinte est de 263,5 secondes (modèle de référence).
+-   Les effets du Pattern : *Le pattern « painted » n’a pas d’effet significatif au seuil alpha de 5%.* L’effet du pattern « painted random » sur le temps d’attaque est significatif au seuil alpha de 5%. Ces proies sont attaquées 186 secondes plus tôt que les « painted ». \*Également le manque de pattern a un effet très significatif au seuil alpha de 5% avec une attaque moyenne 219 secondes plus tôt que celle de référence.
+-   Les effets de l’espèce de proie : il n’y a pas d’effet significatif de l’espèce de la proie sur le temps d’attaque au seuil alpha de 5%
+-   Les effets de l’interaction entre le motif et l’espèce : L’effet du motif « Painted » sur le temps d’attaque est significativement au seuil alpha de 5% différent selon l’espèce de la proie. Lorsque la proie est peinte et est un kingsnake, elle est attaquée plus vite que dans le cas de référence.
 
 #### Modèle linéaire 2
 
@@ -266,9 +265,9 @@ $$
 `r eq__(snake_mod1_gen, use_coefs = TRUE)`
 $$
 
--	Le coefficient du ratio_mass est positif : un ratio de masse plus élevé semble favoriser la présence d’une attaque. De plus, la p-value est extrêmement faible, l’effet du ratio des masses sur la présence ou non d’une attaque est hautement significatif au seuil alpha de 5%.
--	Le coefficient du ratio_svl est négatif : plus il y a un grand ratio, moins les serpents prédateurs attaquent. L’effet du ratio des tailles sur la présence ou non d’attaques est significatif au seuil alpha de 5%.
--	L’ajustement du modèle est relativement bon, mais le paramètre de dispersion montre un léger sous-ajustement.
+-   Le coefficient du ratio_mass est positif : un ratio de masse plus élevé semble favoriser la présence d’une attaque. De plus, la p-value est extrêmement faible, l’effet du ratio des masses sur la présence ou non d’une attaque est hautement significatif au seuil alpha de 5%.
+-   Le coefficient du ratio_svl est négatif : plus il y a un grand ratio, moins les serpents prédateurs attaquent. L’effet du ratio des tailles sur la présence ou non d’attaques est significatif au seuil alpha de 5%.
+-   L’ajustement du modèle est relativement bon, mais le paramètre de dispersion montre un léger sous-ajustement.
 
 #### Modèle linéaire généralisé et/ou mixte 2
 
