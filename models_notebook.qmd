@@ -265,7 +265,7 @@ $$
 
 #### Modèle linéaire généralisé et/ou mixte 1
 
-```{r}
+```{r glm 1}
 
 snake_mod1_gen <- glm(data = snakerev, pred_attempt_bin ~ ratio_mass + ratio_svl + 0, family = binomial)
 summary(snake_mod1_gen) |>tabularise()
