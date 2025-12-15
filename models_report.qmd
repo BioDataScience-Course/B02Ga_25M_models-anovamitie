@@ -16,13 +16,13 @@ bibliography: references.bib
 
 <!--% Rédigez l'introduction de ce rapport en 5-6 phrases.-->
 
-Le jeu de données utilisé dans ce document est tiré d'une recherche sur le cannibalisme entre serpents [@wu2021]. Le principal point recherché est de savoir si la morphologie ou le pattern des jeunes serpents influe sur l'attaque du serpent adulte ou non. En effet, des serpents adultes de l'espèce *king snake* et de l'espèce *cornsnake* ont été mis en contact avec des jeunes de chaque espèce afin de voir combien de temps s'écoulait avant l'attaque, s'il y en avait une.
+Le jeu de données utilisé dans ce document est tiré d'une recherche sur le cannibalisme entre serpents [@wu2021]. Les serpents des espèces kingsnakes et cornsnakes sont connus pour leurs patterns colorés et distingués, ainsi que pour leur ophiophagie. En effet, ces espèces s'attaquent à d'autres espèces de serpent afin de s'alimenter. Ces deux espèces partagent leur habitat et vivent en Amérique du Nord, dans des prairies ou des clairières.
 
 ## But
 
 <!--% Rédigez le but de ce rapport en 2 phrases.-->
 
-Le but de cette analyse est de déterminé si la morphologie influence l'attaque et si les patterns des juvéniles influencent l'attaque de serpents adultes.
+Le but de cette analyse est de déterminer si la morphologie et les patterns des juvéniles influencent l'attaque de serpents adultes. Le temps avant l'attaque est également mesuré afin de déterminer si les attaques surviennent rapidement ou non.
 
 ## Matériel et méthodes
 
@@ -30,7 +30,7 @@ Le but de cette analyse est de déterminé si la morphologie influence l'attaque
 
 Les données ont été collectées par *Wu Nicholas* *et al* et sont en accès libre (MIT Licence, <https://doi.org/10.5281/zenodo.5399271>)**.** Toutes les informations sur les données, le déroulé des expériences et le dictionnaire des données sont disponibles dans l'article.
 
-Différente régression linéaire et modèle linéaire sont utilisés afin de modéliser les données. Au préalable, une description des données est réalisée pour les représenter. Le seuil $\alpha$ de tous les tests est fixé à l'avance à 5%.
+Différentes régressions linéaires et modèles linéaires sont utilisés afin de modéliser les données. Au préalable, une description des données est réalisée pour les représenter. Le seuil $\alpha$ de tous les tests est fixé à l'avance à 5%.
 
 L'analyse est réalisée avec le logiciel R (`r R.version.string`) et en particulier le package {modelit} version `r packageVersion("modelit")` avec la [SciViews Box 2025](https://www.sciviews.org/software/svbox/) dans [Saturn Cloud](https://saturncloud.io/) (Linux Ubuntu 22.04).
 

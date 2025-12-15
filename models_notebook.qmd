@@ -21,7 +21,9 @@ bibliography: references.bib
 
 <!--% Rédigez une courte introduction de 3 ou 5 phrases qui présente vos données. Ajoutez une phrase de but (que vous remanierez éventuellement en fonction des modèles que vous ajouterez plus tard). Vous pouvez citer la bibliographie en utilisant le formatage Markdown ad hoc et en incluant votre référence au format bibtex dans le fichier references.bib. -->
 
-Le jeu de données utilisé dans ce document est tiré d'une recherche sur le cannibalisme entre serpents [@wu2021]. Le principal point recherché est de savoir si la morphologie ou le pattern des jeunes serpents influe sur l'attaque du serpent adulte ou non. En effet, des serpents adultes de l'espèce *king snake* et de l'espèce *cornsnake* ont été mis en contact avec des jeunes de chaque espèce afin de voir combien de temps s'écoulait avant l'attaque, s'il y en avait une.
+Le jeu de données utilisé dans ce document est tiré d'une recherche sur le cannibalisme entre serpents [@wu2021]. Les espèces de serpent rencontrées dans ce document, les *kingsnakes* et les *cornsnakes*, sont des serpents carnivores et notamment cannibales. Ces deux espèces de serpent possèdent des patterns différents sur leurs corps. Leur alimentation se compose en partie d'autres serpents, et en partie d'insectes et de petits rongeurs. Ces serpents vivent dans des prairies ou clairières d'Amérique du nord.
+
+Le principal point recherché est de savoir si la morphologie ou le pattern des jeunes serpents influe sur l'attaque du serpent adulte ou non. En effet, des serpents adultes de l'espèce *kingsnake* et de l'espèce *cornsnake* ont été mis en contact avec des jeunes de chaque espèce afin de voir combien de temps s'écoulait avant l'attaque, s'il y en avait une.
 
 ## Matériel et méthodes
 
@@ -29,7 +31,7 @@ Le jeu de données utilisé dans ce document est tiré d'une recherche sur le ca
 
 Les données ont été collectées par *Wu Nicholas* *et al* et sont en accès libre (MIT Licence, <https://doi.org/10.5281/zenodo.5399271>)**.** Toutes les informations sur les données, le déroulé des expériences et le dictionnaire des données sont disponibles dans l'article.
 
-Différente régression linéaire et modèle linéaire sont utilisés afin de modéliser les données. Au préalable, une description des données est réalisée pour les représenter. Le seuil $\alpha$ de tous les tests est fixé à l'avance à 5%.
+Différentes régressions linéaires et modèles linéaires sont utilisés afin de modéliser les données. Au préalable, une description des données est réalisée pour les représenter. Le seuil $\alpha$ de tous les tests est fixé à l'avance à 5%.
 
 L'analyse est réalisée avec le logiciel R (`r R.version.string`) et en particulier le package {modelit} version `r packageVersion("modelit")` avec la [SciViews Box 2025](https://www.sciviews.org/software/svbox/) dans [Saturn Cloud](https://saturncloud.io/) (Linux Ubuntu 22.04).
 
