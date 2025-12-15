@@ -241,7 +241,7 @@ $$
 #### Modèle linéaire 2
 
 ```{r modèle linéaire 2}
-snakerev_lm4 <- lm(data = snakerev, time_to_attack_s ~ painted + pred_attempt)
+snakerev_lm4 <- lm(data = snakerev, time_to_attack_s ~ prey_species + painted)
 
 tabularise(summary_(snakerev_lm4))
 chart$residuals(snakerev_lm4)
@@ -250,6 +250,14 @@ chart$residuals(snakerev_lm4)
 $$
 `r eq__(snakerev_lm4, use_coefs = TRUE, origdata = snakerev)`
 $$
+
+-   Le modèle en lui-même est significatif au seuil alpha de 5% (p\<2.22e-16). Son R2 est de 0.3567, ce qui rend le premier modèle meilleur que celui-ci, même si ces deux modèles n'ont pas un R2 exceptionnel.
+
+-   Toutes les variables sont significatives au seuil alpha de 5%, sauf la relation entre le fait d'être peint et le temps avant l'attaque. Néanmoins, il est très proche de l'être. Cette observation nous indique que suivant d'autres interactions, la variable "peint" pourrait être significative et être tenue en compte.
+
+-   Dans ce modèle, la variable "espèce de la proie" est significative au seuil alpha de 5%, ce qui pourrait indiquer que le premier modèle possède légèrement trop de variables et que le calcul de la significativité des premières variables n'est pas tout à fait exact.
+
+-   De plus, le graphique de l'analyse des résidus n'a pas énormément de sens étant donné que l'on travaille avec des données qualitatives dans ce cas.
 
 <!--% Élaborez un modèle linéaire généralisé ou mixte par paire d'étudiants dans cette section. -->
 
