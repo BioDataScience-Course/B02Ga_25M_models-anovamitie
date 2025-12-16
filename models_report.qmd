@@ -80,11 +80,9 @@ snake_only_attaque <- snakerev %>%
 
 ### Modèle linéaire généralisé 1
 
-<<<<<<< HEAD
-```{r}
-=======
+
 ```{r model 1}
->>>>>>> 0d0124fb8e4a08da88a632281857ee161cb0258a
+
 snake_mod1_gen <- glm(data = snakerev, pred_attempt_bin ~ ratio_mass + ratio_svl + 0, family = binomial)
 summary(snake_mod1_gen) |>tabularise()
 
@@ -93,10 +91,10 @@ summary(snake_mod1_gen) |>tabularise()
 
 ### Modèle...
 
-```{r}
+```{r model 2}
 
 ### Modèle linéaire généralisé 2
-b0258a
+
 snake_modglm_test <- glm(data = snakerev, time_to_attack_s ~ pattern + prey_species, family = gaussian)
 summary(snake_modglm_test) |>tabularise()
 ```
