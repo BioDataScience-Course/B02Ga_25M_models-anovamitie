@@ -30,6 +30,8 @@ Le but de cette analyse est de déterminer si la morphologie et les patterns des
 
 Les données ont été collectées par *Wu Nicholas* *et al* et sont en accès libre (MIT Licence, <https://doi.org/10.5281/zenodo.5399271>)**.** Toutes les informations sur les données, le déroulé des expériences et le dictionnaire des données sont disponibles dans l'article.
 
+Les expériences ont été réalisées en plaçant, dans une boîte fermée, un individu adulte et un individu juvénile. Le temps d'attaque a été chronométré pour chaque expérience.
+
 Différentes régressions linéaires et modèles linéaires sont utilisés afin de modéliser les données. Au préalable, une description des données est réalisée pour les représenter. Le seuil $\alpha$ de tous les tests est fixé à l'avance à 5%.
 
 L'analyse est réalisée avec le logiciel R (`r R.version.string`) et en particulier le package {modelit} version `r packageVersion("modelit")` avec la [SciViews Box 2025](https://www.sciviews.org/software/svbox/) dans [Saturn Cloud](https://saturncloud.io/) (Linux Ubuntu 22.04).
@@ -57,6 +59,25 @@ tabularise$headtail(snakerev)
 skimr::skim(snakerev)
 snakerev<-smutate(snakerev, juvenile_sex = as.factor(juvenile_sex), pattern = as.factor(pattern), painted = as.factor(painted), pred_attempt = as.factor(juvenile_sex), prey_species = as.factor(prey_species), adult_sex  = as.factor(adult_sex)
 )
+#Création d'une nouvelle variable
+snakerev <- snakerev %>%
+  smutate(
+    ratio_mass = adult_mass_g / juvenile_mass_g,
+    ratio_svl = adult_svl_cm / juvenile_svl_cm
+  )
+snakerev <- labelise(snakerev, 
+  label = list(
+    ratio_mass = "Rapport entre la masse de l'adulte et du juvénile",
+    ratio_svl = "Rapport entre la taille de l'adulte et du juvénile"), 
+  units=list(
+      ratio_mass = "NA",
+    ratio_svl = "NA"
+  ))
+
+#On vire ceux qui n'attaquent pas car pas intéressant
+snake_only_attaque <- snakerev %>%
+  filter(time_to_attack_s < 900)
+
 ```
 
 ### Modèle ...
@@ -68,7 +89,8 @@ snakerev<-smutate(snakerev, juvenile_sex = as.factor(juvenile_sex), pattern = as
 ### Modèle...
 
 ```{r}
-
+snake_modglm_test <- glm(data = snakerev, time_to_attack_s ~ pattern * prey_species, family = gaussian)
+summary(snake_modglm_test) |>tabularise()
 ```
 
 ## Discussion et Conclusion
