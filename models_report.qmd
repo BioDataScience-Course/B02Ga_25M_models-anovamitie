@@ -83,10 +83,16 @@ snake_only_attaque <- snakerev %>%
 ### Modèle linéaire généralisé 1
 
 ```{r model 1}
-snake_mod1_gen <- glm(data = snakerev, pred_attempt_bin ~ ratio_mass + ratio_svl + 0, family = binomial)
+snake_mod1_gen <- glm(data = snakerev, pred_attempt_bin ~ ratio_mass + ratio_svl+ + 0, family = binomial)
 summary(snake_mod1_gen) |>tabularise()
 
 ```
+
+L'ajustement du modèle est relativement bon même s'il y a une légère sous-dispersion. (186.3/198=0.94).
+
+Le coefficient du ratio_mass est positif, cela signifie qu'un ratio adulte/juvénile élevé (adulte beaucoup plus lourd que le juvénile) augmente la probabilité d'attaque. L’effet du ratio des masses sur la probabilité d'attaque est significatif au seuil alpha de 5%. (p-value\<0.05) et son estimation est relativement bonne (0.229/1.31 = 0.17).
+
+Le coefficient du ratio_svl est négatif, cela signifie qu'un ratio adulte/juvénile élevé pour la longueur museau-cloaque diminue la probabilité d'attaque. L’effet du ratio des tailles sur la la probabilité d'attaque est significatif au seuil alpha de 5%. (p-value\<0.05) et son estimation est relativement bonne (0.357/-2.21 = -0.16).
 
 ### Modèle linéaire généralisé 2
 
@@ -94,6 +100,12 @@ summary(snake_mod1_gen) |>tabularise()
 snake_modglm_test <- glm(data = snakerev, time_to_attack_s ~ pattern + prey_species, family = gaussian)
 summary(snake_modglm_test) |>tabularise()
 ```
+
+Tous les termes du modèle sont significativement différents du premier niveau de chacune des variables qualitatives, c'est à dire le pattern normal pour les serpents de l'espèce Cornsnake au seuil α = 5 % sauf le terme relatif aux serpents qui ont (déjà) des motifs et qui ont été peints (patternPainted).
+
+L'estimation des paramètres est moyenne pour patternPainted (ratio écart type vs valeur estimée ≈ 0.56), bonne pour patternPainted random (ratio ≈ 0.24.) et pour patternPatternless (ratio ≈ 0.16), et très bonne pour prey_specieskingsnake (ratio ≈ 0.11)
+
+La moyenne du temps avant l'attaque diminue pour patternPainted, patternPainted random, patternPatternless, ce qui indique une attaque rapide. Pour prey_specieskingsnake, la moyenne augmente ce qui indique une attaque plus lente.
 
 ## Discussion et Conclusion
 
