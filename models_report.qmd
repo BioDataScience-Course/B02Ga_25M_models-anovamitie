@@ -72,7 +72,7 @@ snakerev <- labelise(snakerev,
     ratio_svl = "NA"
   ))
 
-#On vire ceux qui n'attaquent pas car pas intéressant
+#On vire ceux qui n'attaquent pas car pas intéressant pour certains tests.
 snake_only_attaque <- snakerev %>%
   filter(time_to_attack_s < 900)
 
@@ -80,26 +80,16 @@ snake_only_attaque <- snakerev %>%
 
 ### Modèle ...
 
-<<<<<<< HEAD
 ```{r}
 snake_mod1_gen <- glm(data = snakerev, pred_attempt_bin ~ ratio_mass + ratio_svl + 0, family = binomial)
 summary(snake_mod1_gen) |>tabularise()
-=======
-```{r model 1}
 
->>>>>>> 0aea30783e46cb93bf090e63ed6f7e343cf84520
 ```
 
 ### Modèle...
 
-
 ```{r}
 snake_modglm_test <- glm(data = snakerev, time_to_attack_s ~ pattern + prey_species, family = gaussian)
-
-
-
-```{r model 2}
-snake_modglm_test <- glm(data = snakerev, time_to_attack_s ~ pattern * prey_species, family = gaussian)
 summary(snake_modglm_test) |>tabularise()
 ```
 

@@ -186,7 +186,7 @@ $$
 `r eq__(snakerev_lm1.2, use_coefs = TRUE)`
 $$
 
-Le modèle réalisé n'est pas significatif et pertinent. Seul l'ordonnée à l'origine est significative au seuil alpha de 5%. De plus, le R² est proche de 0 ce qui indique que notre modèle n'est pas bien ajusté.
+Le modèle réalisé n'est pas significatif et pertinent. Seule l'ordonnée à l'origine est significative au seuil alpha de 5%. De plus, le R² est proche de 0 ce qui indique que notre modèle n'est pas bien ajusté.
 
 La visualisation graphique du modèle montre que les points ne sont pas compris dans l'intervalle de confiance, ce qui indique que le modèle n'est pas ajusté de façon acceptable.
 
