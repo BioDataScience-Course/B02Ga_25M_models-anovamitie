@@ -277,13 +277,13 @@ $$
 
 -   Le coefficient du ratio_mass est positif : un ratio de masse plus élevé semble favoriser la présence d’une attaque. De plus, la p-value est extrêmement faible, l’effet du ratio des masses sur la présence ou non d’une attaque est hautement significatif au seuil alpha de 5%.
 -   Le coefficient du ratio_svl est négatif : plus il y a un grand ratio, moins les serpents prédateurs attaquent. L’effet du ratio des tailles sur la présence ou non d’attaques est significatif au seuil alpha de 5%.
--   L’ajustement du modèle est relativement bon, mais le paramètre de dispersion montre un léger sous-ajustement.
+-   L’ajustement du modèle est relativement bon, mais le paramètre de dispersion montre une légere sous-dispersion.
 
 #### Modèle linéaire généralisé et/ou mixte 2
 
 ```{r glm 2}
-glm2 <- glm(data = snakerev, pred_attempt_bin ~ pattern + prey_species, family = binomial)
-tabularise(summary(glm2))
+glm2_2 <- glm(data = snakerev, time_to_attack_s ~ pattern + prey_species, family = gaussian)
+summary(glm2_2) |>tabularise()
 
 ```
 
