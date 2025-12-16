@@ -282,8 +282,8 @@ $$
 #### Modèle linéaire généralisé et/ou mixte 2
 
 ```{r glm 2}
-glm2 <- glm(data = snakerev, pred_attempt_bin ~ pattern + prey_species, family = binomial)
-tabularise(summary(glm2))
+glm2_2 <- glm(data = snakerev, time_to_attack_s ~ pattern + prey_species, family = gaussian)
+summary(glm2_2) |>tabularise()
 
 ```
 
