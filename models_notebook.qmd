@@ -111,7 +111,7 @@ combine_charts(list(a,b))
 
 -   La masse des juvéniles n'influence pas le temps d'attaque.
 
--   Les juvéniles de l'espèce *kingsnake* ont tous une masse supérieur à celle de l'espèce *cornsnake*.
+-   Les juvéniles de l'espèce *kingsnake* ont tous une masse supérieure à celle de l'espèce *cornsnake*.
 
 -   On peut observer qu'il y a indépendance des observations lors des expérience parce que certains juvéniles et tout les adultes sont repris plusieurs fois.
 
@@ -181,11 +181,7 @@ $$
 `r eq__(snakerev_lm1.2, use_coefs = TRUE)`
 $$
 
-<<<<<<< HEAD
-Mettre que c'est pas pertinent et pourquoi est ce qu'on a tester ça ( genre truc biologique les grand attaque les grands...)
-=======
 Mettre que c'est pas pertinent et pourquoi est ce qu'on a tester ça ( genre truc biologique les grand attaque les grands..)
->>>>>>> f3563c78f14fd40b0ec5dc53c6ebd971c0bf6d3a
 
 <!--% Ajustez une régression linéaire simple, multiple ou polynomiale par paire d'étudiants dans cette section (donc, deux modèles pour l'équipe de quatre). -->
 
