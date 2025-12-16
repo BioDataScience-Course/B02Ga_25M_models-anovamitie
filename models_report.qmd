@@ -80,21 +80,15 @@ snake_only_attaque <- snakerev %>%
 
 ### Modèle linéaire généralisé 1
 
-
 ```{r model 1}
-
 snake_mod1_gen <- glm(data = snakerev, pred_attempt_bin ~ ratio_mass + ratio_svl + 0, family = binomial)
 summary(snake_mod1_gen) |>tabularise()
 
 ```
 
-
-### Modèle...
-
-```{r model 2}
-
 ### Modèle linéaire généralisé 2
 
+```{r model 2}
 snake_modglm_test <- glm(data = snakerev, time_to_attack_s ~ pattern + prey_species, family = gaussian)
 summary(snake_modglm_test) |>tabularise()
 ```
@@ -103,6 +97,8 @@ summary(snake_modglm_test) |>tabularise()
 
 <!--% En tenant compte du but de votre carnet de notes et de vos résultats, discutez de résultats et proposez des conclusions à votre analyse en 5 à 10 phrases. -->
 
-Le but de cette recherche était de déterminer le lien entre la morphologie et les patterns des juvéniles et le temps avant l'attaque. Ces liens ont été démontrés dans nos modèles linéaires généralisés, car les interactions entre le temps avant l'attaque et les variables sur la morphologie et sur le pattern sont significatives au seuil alpha de 5%. Ces analyses nous montrent donc que les juvéniles les plus grands sont attaqués plus rapidement et que les juvéniles possédant des patterns, peints ou non, sont plus attaqués que les juvéniles n'en ayant pas. De plus,
+Le but de cette recherche était de déterminer le lien entre la morphologie et les patterns des juvéniles et le temps avant l'attaque. Ces liens ont été démontrés dans nos modèles linéaires généralisés, car les interactions entre le temps avant l'attaque et les variables sur la morphologie et sur le pattern sont significatives au seuil alpha de 5%. Ces analyses nous montrent donc que les juvéniles les plus grands sont attaqués plus rapidement et que les juvéniles possédant des patterns, peints ou non, sont plus attaqués que les juvéniles n'en ayant pas. De plus, nous pouvons remarquer que les serpents de l'espèce *kingsnake* sont moins attaqués que les serpents de l'espèce *cornsnake*.
+
+Nous concluons qu'effectivement, la morphologie et les patterns des juvéniles ont un lien avec l'attaque, et notamment la rapidité de cette attaque.
 
 ## Bibliographie

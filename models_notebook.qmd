@@ -288,7 +288,7 @@ summary(glm2_2) |>tabularise()
 ```
 
 $$
-`r eq__(glm2, use_coefs = TRUE, origdata = snakerev)`
+`r eq__(glm2_2, use_coefs = TRUE, origdata = snakerev)`
 $$
 
 Dans le cas d'un modèle linéaire généralisé mixte utilisant une famille binomiale, l'analyse des résidus n'est pas réalisée, cependant, nous pouvons dire que la dispersion est de 154.1/195 = 0.78, ce qui est acceptable. Tous les termes du modèle sont significativement différents du pattern normal au seuil alpha de 5% sauf le terme relatif aux serpents qui ont (déjà) des motifs et qui ont été peints. L'estimation des paramètres est mauvaise pour ceux qui ont déja un pattern et ont été peints, en effet, l'écart type est très élevé par rapport à la valeur estimée (0.69/0.74). Les autres variables sont estimées avec une précision très moyenne à faible. Lorsque le juvénile a des patterns et est peint aléatoirement ou lorsqu'il a des patterns mais n'a pas été peint, la probabilité d'être attaqué augmente. De plus, un juvénile de l'espèce kingsnake est comparativement moins attaqué qu'un juvénile de l'espèce cornsnake.
