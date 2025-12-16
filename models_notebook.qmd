@@ -301,6 +301,8 @@ Les modèles linéaires généralisés nous montrent que en effet, la morphologi
 
 Les modèles linéaires simples et régressions linéaires, quant à eux, présentent des données contradictoires avec les glm: en effet, ils montrent que nos variables "morphologie" et "patterns" ne sont pas significatifs. Néanmoins, nous pouvons invalider ces modèles étant donné que les conditions pour les réaliser ne sont pas correctes.
 
+Les deux modèles que nous gardons pour le report seront les deux modèles linéaires généralisés.
+
 ## Références
 
 <!--% N'indiquez rien ci-dessous. Quarto se chargera de rajouter vos références bibliographiques automatiquement. -->
