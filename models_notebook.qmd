@@ -116,7 +116,7 @@ combine_charts(list(a,b))
 
 -   La masse des juvéniles n'influence pas le temps d'attaque.
 
--   Les juvéniles de l'espèce *kingsnake* ont tous une masse supérieur à celle de l'espèce *cornsnake*.
+-   Les juvéniles de l'espèce *kingsnake* ont tous une masse supérieure à celle de l'espèce *cornsnake*.
 
 -   On peut observer qu'il y a indépendance des observations lors des expérience parce que certains juvéniles et tout les adultes sont repris plusieurs fois.
 
