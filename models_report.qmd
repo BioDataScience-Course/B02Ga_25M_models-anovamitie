@@ -88,14 +88,8 @@ summary(snake_mod1_gen) |>tabularise()
 
 ### Modèle...
 
-
 ```{r}
 snake_modglm_test <- glm(data = snakerev, time_to_attack_s ~ pattern + prey_species, family = gaussian)
-
-
-
-```{r model 2}
-snake_modglm_test <- glm(data = snakerev, time_to_attack_s ~ pattern * prey_species, family = gaussian)
 summary(snake_modglm_test) |>tabularise()
 ```
 
