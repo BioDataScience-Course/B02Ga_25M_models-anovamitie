@@ -103,9 +103,9 @@ summary(snake_modglm_test) |>tabularise()
 
 Tous les termes du modèle sont significativement différents du premier niveau de chacune des variables qualitatives, c'est à dire le pattern normal pour les serpents de l'espèce Cornsnake au seuil α = 5 % sauf le terme relatif aux serpents qui ont (déjà) des motifs et qui ont été peints (patternPainted).
 
-L'estimation des paramètres est moyenne pour patternPainted (ratio écart type vs valeur estimée ≈ 0.56), bonne pour patternPainted random (ratio ≈ 0.24.) et pour patternPatternless (ratio ≈ 0.16), et très bonne pour prey_specieskingsnake (ratio ≈ 0.11)
+L'estimation des paramètres est moyenne pour les serpents avec des motifs et qui sont peints (ratio écart type vs valeur estimée ≈ 0.56), bonne pour ceux qui ayant des motifs et qui sont peints aléatoirement (ratio ≈ 0.24.) et pour ceux ayant des motifs mais non peints (ratio ≈ 0.16), et très bonne pour les juvéniles de l'espèce Kingsnake (ratio ≈ 0.11)
 
-La moyenne du temps avant l'attaque diminue pour patternPainted, patternPainted random, patternPatternless, ce qui indique une attaque rapide. Pour prey_specieskingsnake, la moyenne augmente ce qui indique une attaque plus lente.
+La moyenne du temps avant l'attaque diminue pour ceux ayant des motifs (et qui sont peints ou non) et ceux ayant des motifs et qui sont peints aléatoirement, ce qui indique qu'ils sont attaqués plus rapidement. Pour les juvéniles de l'espèce Kingsnake, la moyenne augmente ce qui indique qu'ils sont attaqués plus lentement.
 
 ## Discussion et Conclusion
 
