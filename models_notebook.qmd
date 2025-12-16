@@ -297,9 +297,9 @@ Dans le cas d'un modèle linéaire généralisé mixte utilisant une famille bin
 
 <!--% Lorsque toutes les analyses sont réalisées, terminez ce bloc-notes avec 3 à 6 phrases de conclusion en rapport avec ce que vous avez observé dans vos analyses. Quels sont les modèles les plus pertinents que vous retenez ? -->
 
-Toutes ces analyses nous montrent que en effet, la morphologie du juvénile a un effet significatif sur le temps d'attaque des adultes.
+Les modèles linéaires généralisés nous montrent que en effet, la morphologie du juvénile a un effet significatif sur le temps d'attaque des adultes. Les patterns semblent être également significatifs sur le temps d'attaque dans ces glm.
 
-Les patterns, quant à eux, semblent être également significatifs sur le temps d'attaque, mais cette conclusion n'est pas correcte pour toutes les analyses : en effet, certains modèles linéaires ou régressions linéaires montrent que cette variable n'est pas significative. Néanmoins, nous pouvons invalider ces modèles étant donné que les conditions pour les réaliser ne sont pas tout à fait correctes.
+Les modèles linéaires simples et régressions linéaires, quant à eux, présentent des données contradictoires avec les glm: en effet, ils montrent que nos variables "morphologie" et "patterns" ne sont pas significatifs. Néanmoins, nous pouvons invalider ces modèles étant donné que les conditions pour les réaliser ne sont pas correctes.
 
 ## Références
 
