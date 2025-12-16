@@ -82,13 +82,13 @@ snake_only_attaque <- snakerev %>%
 
 ### Modèle ...
 
-```{r}
+```{r model 1}
 
 ```
 
 ### Modèle...
 
-```{r}
+```{r model 2}
 snake_modglm_test <- glm(data = snakerev, time_to_attack_s ~ pattern * prey_species, family = gaussian)
 summary(snake_modglm_test) |>tabularise()
 ```
