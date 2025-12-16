@@ -57,6 +57,25 @@ tabularise$headtail(snakerev)
 skimr::skim(snakerev)
 snakerev<-smutate(snakerev, juvenile_sex = as.factor(juvenile_sex), pattern = as.factor(pattern), painted = as.factor(painted), pred_attempt = as.factor(juvenile_sex), prey_species = as.factor(prey_species), adult_sex  = as.factor(adult_sex)
 )
+#Création d'une nouvelle variable
+snakerev <- snakerev %>%
+  smutate(
+    ratio_mass = adult_mass_g / juvenile_mass_g,
+    ratio_svl = adult_svl_cm / juvenile_svl_cm
+  )
+snakerev <- labelise(snakerev, 
+  label = list(
+    ratio_mass = "Rapport entre la masse de l'adulte et du juvénile",
+    ratio_svl = "Rapport entre la taille de l'adulte et du juvénile"), 
+  units=list(
+      ratio_mass = "NA",
+    ratio_svl = "NA"
+  ))
+
+#On vire ceux qui n'attaquent pas car pas intéressant
+snake_only_attaque <- snakerev %>%
+  filter(time_to_attack_s < 900)
+
 ```
 
 ### Modèle ...

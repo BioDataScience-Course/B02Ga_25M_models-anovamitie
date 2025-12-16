@@ -186,9 +186,6 @@ $$
 `r eq__(snakerev_lm1.2, use_coefs = TRUE)`
 $$
 
-<<<<<<< HEAD
-Mettre que c'est pas pertinent et pourquoi est ce qu'on a tester ça ( genre truc biologique les grand attaque les grands..)
-=======
 Le modèle réalisé n'est pas significatif et pertinent. Seul l'ordonnée à l'origine est significative au seuil alpha de 5%. De plus, le R² est proche de 0 ce qui indique que notre modèle n'est pas bien ajusté.
 
 La visualisation graphique du modèle montre que les points ne sont pas compris dans l'intervalle de confiance, ce qui indique que le modèle n'est pas ajusté de façon acceptable.
@@ -196,7 +193,6 @@ La visualisation graphique du modèle montre que les points ne sont pas compris 
 L'analyse du graphique composite des résidus nous indique que la normalité des résidus ne suit pas une distribution normale car les résidus s'écarte de manière symétrique aux extrémités. Les résidus sont élevé par rapport aux valeurs prédites. Les points sembla avoir une distance de Cook relativement élevé par contre l'homoscédasticité est respectée.
 
 Ce test a été réalisé car nous pensions qu'il ya aurait une relation entre le temps d'attaque et la relation entre la masse de l'adulte et du juvénile. Pour nous, les adultes de grande taille ciblent des juvéniles proportionnellement plus grands.
->>>>>>> b711ed26ef77093b3c1232046386fa28913b4d67
 
 <!--% Ajustez une régression linéaire simple, multiple ou polynomiale par paire d'étudiants dans cette section (donc, deux modèles pour l'équipe de quatre). -->
 
