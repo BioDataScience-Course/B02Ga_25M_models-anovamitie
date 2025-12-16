@@ -21,7 +21,9 @@ bibliography: references.bib
 
 <!--% Rédigez une courte introduction de 3 ou 5 phrases qui présente vos données. Ajoutez une phrase de but (que vous remanierez éventuellement en fonction des modèles que vous ajouterez plus tard). Vous pouvez citer la bibliographie en utilisant le formatage Markdown ad hoc et en incluant votre référence au format bibtex dans le fichier references.bib. -->
 
-Le jeu de données utilisé dans ce document est tiré d'une recherche sur le cannibalisme entre serpents [@wu2021]. Le principal point recherché est de savoir si la morphologie ou le pattern des jeunes serpents influe sur l'attaque du serpent adulte ou non. En effet, des serpents adultes de l'espèce *king snake* et de l'espèce *cornsnake* ont été mis en contact avec des jeunes de chaque espèce afin de voir combien de temps s'écoulait avant l'attaque, s'il y en avait une.
+Le jeu de données utilisé dans ce document est tiré d'une recherche sur le cannibalisme entre serpents [@wu2021]. Les espèces de serpent rencontrées dans ce document, les *kingsnakes* et les *cornsnakes*, sont des serpents carnivores et notamment cannibales. Ces deux espèces de serpent possèdent des patterns différents sur leurs corps. Leur alimentation se compose en partie d'autres serpents, et en partie d'insectes et de petits rongeurs. Ces serpents vivent dans des prairies ou clairières d'Amérique du nord.
+
+Le principal point recherché est de savoir si la morphologie ou le pattern des jeunes serpents influe sur l'attaque du serpent adulte ou non. En effet, des serpents adultes de l'espèce *kingsnake* et de l'espèce *cornsnake* ont été mis en contact avec des jeunes de chaque espèce afin de voir combien de temps s'écoulait avant l'attaque, s'il y en avait une.
 
 ## Matériel et méthodes
 
@@ -29,7 +31,7 @@ Le jeu de données utilisé dans ce document est tiré d'une recherche sur le ca
 
 Les données ont été collectées par *Wu Nicholas* *et al* et sont en accès libre (MIT Licence, <https://doi.org/10.5281/zenodo.5399271>)**.** Toutes les informations sur les données, le déroulé des expériences et le dictionnaire des données sont disponibles dans l'article.
 
-Différente régression linéaire et modèle linéaire sont utilisés afin de modéliser les données. Au préalable, une description des données est réalisée pour les représenter. Le seuil $\alpha$ de tous les tests est fixé à l'avance à 5%.
+Différentes régressions linéaires et modèles linéaires sont utilisés afin de modéliser les données. Au préalable, une description des données est réalisée pour les représenter. Le seuil $\alpha$ de tous les tests est fixé à l'avance à 5%.
 
 L'analyse est réalisée avec le logiciel R (`r R.version.string`) et en particulier le package {modelit} version `r packageVersion("modelit")` avec la [SciViews Box 2025](https://www.sciviews.org/software/svbox/) dans [Saturn Cloud](https://saturncloud.io/) (Linux Ubuntu 22.04).
 
@@ -54,7 +56,7 @@ snakerev <- read("data/snake.rds")
 # Tableau des premières et dernières lignes
 tabularise$headtail(snakerev)
 skimr::skim(snakerev)
-snakerev<-smutate(snakerev, juvenile_sex = as.factor(juvenile_sex), pattern = as.factor(pattern), painted = as.factor(painted), pred_attempt = as.factor(juvenile_sex), prey_species = as.factor(prey_species), adult_sex  = as.factor(adult_sex)
+snakerev<-smutate(snakerev, juvenile_sex = as.factor(juvenile_sex), pattern = as.factor(pattern), painted = as.factor(painted), pred_attempt = as.factor(pred_attempt), prey_species = as.factor(prey_species), adult_sex  = as.factor(adult_sex)
 )
 ```
 
@@ -65,11 +67,14 @@ snakerev<-smutate(snakerev, juvenile_sex = as.factor(juvenile_sex), pattern = as
 ```{r Louise Dubrecq chart}
 chart(data = snakerev, ~ pattern %fill=% pred_attempt) +
 geom_bar(position = "dodge") +
-  labs(y = "Effectifs", x = "Motif de la proie du serpent", fill = "Attaque")
+  labs(y = "Effectifs", x = "Motif de la proie du serpent", fill = "Attaque") +
+    geom_text(stat = "count", aes(label = ..count..), position = position_dodge(width = 0.9), vjust = -0.2)
 
 ```
 
-... interprétation #1...
+-   Lorsque la proie arbore un pattern normal, le pourcentage d’attaque du serpent prédateur est de 9,8%. Pour le « painted » , il est de 60%, 48% pour une proie peinte de manière aléatoire et 76% pour ceux n’ayant pas de motif.
+-   Le taux d’attaque est plus haut quand la proie n’a pas de motif. En outre, lorsque la proie a un pattern normal, il est au plus bas.
+-   Les proies peintes de manière aléatoire et celle avec un motif normal sont les 2 ou la non-attaque l’emporte sur l’attaque
 
 <!--% Graphique et interprétation de l'étudiant #2 ci-dessous. -->
 
@@ -181,7 +186,17 @@ $$
 `r eq__(snakerev_lm1.2, use_coefs = TRUE)`
 $$
 
+<<<<<<< HEAD
 Mettre que c'est pas pertinent et pourquoi est ce qu'on a tester ça ( genre truc biologique les grand attaque les grands..)
+=======
+Le modèle réalisé n'est pas significatif et pertinent. Seul l'ordonnée à l'origine est significative au seuil alpha de 5%. De plus, le R² est proche de 0 ce qui indique que notre modèle n'est pas bien ajusté.
+
+La visualisation graphique du modèle montre que les points ne sont pas compris dans l'intervalle de confiance, ce qui indique que le modèle n'est pas ajusté de façon acceptable.
+
+L'analyse du graphique composite des résidus nous indique que la normalité des résidus ne suit pas une distribution normale car les résidus s'écarte de manière symétrique aux extrémités. Les résidus sont élevé par rapport aux valeurs prédites. Les points sembla avoir une distance de Cook relativement élevé par contre l'homoscédasticité est respectée.
+
+Ce test a été réalisé car nous pensions qu'il ya aurait une relation entre le temps d'attaque et la relation entre la masse de l'adulte et du juvénile. Pour nous, les adultes de grande taille ciblent des juvéniles proportionnellement plus grands.
+>>>>>>> b711ed26ef77093b3c1232046386fa28913b4d67
 
 <!--% Ajustez une régression linéaire simple, multiple ou polynomiale par paire d'étudiants dans cette section (donc, deux modèles pour l'équipe de quatre). -->
 
@@ -213,18 +228,26 @@ Le modèle a été revu plusieurs fois mais aucun des essais n'a été concluant
 #### Modèle linéaire 1
 
 ```{r modèle linéaire 1}
-snake_mod1_lm <- lm(data = snakerev, time_to_attack_s ~ pattern + pred_attempt )
+snake_mod1_lm <- lm(data = snakerev, time_to_attack_s ~ pattern * prey_species, subset = time_to_attack_s < 900)
 summary(snake_mod1_lm) |>tabularise()
+chart$residuals(snake_mod1_lm)
 ```
 
 $$
 `r eq__(snake_mod1_lm, use_coefs = TRUE, origdata = snakerev)`
 $$
 
+-   Le modèle explique \~ 42% de la variance du temps d’attaque. Cette valeur est suffisante pour des données comportementales.
+-   La significativité globale est haute : p = 9.27e-12.
+-   Le temps moyen d’attaque pour une proie « corn snake » peinte est de 263,5 secondes (modèle de référence).
+-   Les effets du Pattern : *Le pattern « painted » n’a pas d’effet significatif au seuil alpha de 5%.* L’effet du pattern « painted random » sur le temps d’attaque est significatif au seuil alpha de 5%. Ces proies sont attaquées 186 secondes plus tôt que les « painted ». \*Également le manque de pattern a un effet très significatif au seuil alpha de 5% avec une attaque moyenne 219 secondes plus tôt que celle de référence.
+-   Les effets de l’espèce de proie : il n’y a pas d’effet significatif de l’espèce de la proie sur le temps d’attaque au seuil alpha de 5%
+-   Les effets de l’interaction entre le motif et l’espèce : L’effet du motif « Painted » sur le temps d’attaque est significativement au seuil alpha de 5% différent selon l’espèce de la proie. Lorsque la proie est peinte et est un kingsnake, elle est attaquée plus vite que dans le cas de référence.
+
 #### Modèle linéaire 2
 
 ```{r modèle linéaire 2}
-snakerev_lm4 <- lm(data = snakerev, time_to_attack_s ~ painted + pred_attempt)
+snakerev_lm4 <- lm(data = snakerev, time_to_attack_s ~ prey_species + painted)
 
 tabularise(summary_(snakerev_lm4))
 chart$residuals(snakerev_lm4)
@@ -234,11 +257,19 @@ $$
 `r eq__(snakerev_lm4, use_coefs = TRUE, origdata = snakerev)`
 $$
 
+-   Le modèle en lui-même est significatif au seuil alpha de 5% (p\<2.22e-16). Son R2 est de 0.3567, ce qui rend le premier modèle meilleur que celui-ci, même si ces deux modèles n'ont pas un R2 exceptionnel.
+
+-   Toutes les variables sont significatives au seuil alpha de 5%, sauf la relation entre le fait d'être peint et le temps avant l'attaque. Néanmoins, il est très proche de l'être. Cette observation nous indique que suivant d'autres interactions, la variable "peint" pourrait être significative et être tenue en compte.
+
+-   Dans ce modèle, la variable "espèce de la proie" est significative au seuil alpha de 5%, ce qui pourrait indiquer que le premier modèle possède légèrement trop de variables et que le calcul de la significativité des premières variables n'est pas tout à fait exact.
+
+-   De plus, le graphique de l'analyse des résidus n'a pas énormément de sens étant donné que l'on travaille avec des données qualitatives dans ce cas.
+
 <!--% Élaborez un modèle linéaire généralisé ou mixte par paire d'étudiants dans cette section. -->
 
 #### Modèle linéaire généralisé et/ou mixte 1
 
-```{r}
+```{r glm 1}
 
 snake_mod1_gen <- glm(data = snakerev, pred_attempt_bin ~ ratio_mass + ratio_svl + 0, family = binomial)
 summary(snake_mod1_gen) |>tabularise()
@@ -247,6 +278,10 @@ summary(snake_mod1_gen) |>tabularise()
 $$
 `r eq__(snake_mod1_gen, use_coefs = TRUE)`
 $$
+
+-   Le coefficient du ratio_mass est positif : un ratio de masse plus élevé semble favoriser la présence d’une attaque. De plus, la p-value est extrêmement faible, l’effet du ratio des masses sur la présence ou non d’une attaque est hautement significatif au seuil alpha de 5%.
+-   Le coefficient du ratio_svl est négatif : plus il y a un grand ratio, moins les serpents prédateurs attaquent. L’effet du ratio des tailles sur la présence ou non d’attaques est significatif au seuil alpha de 5%.
+-   L’ajustement du modèle est relativement bon, mais le paramètre de dispersion montre un léger sous-ajustement.
 
 #### Modèle linéaire généralisé et/ou mixte 2
 

@@ -1,6 +1,6 @@
 ---
-title: "___"
-author: "___, ___, ___, ___"
+title: "Cannibalisme chez les serpents"
+author: "Louise Dubrecq, Sarah Delapierre, Martin Jadouille, Charlotte De Saeger"
 format:
   pdf:
     documentclass: report
@@ -16,17 +16,60 @@ bibliography: references.bib
 
 <!--% Rédigez l'introduction de ce rapport en 5-6 phrases.-->
 
+Le jeu de données utilisé dans ce document est tiré d'une recherche sur le cannibalisme entre serpents [@wu2021]. Les serpents des espèces kingsnakes et cornsnakes sont connus pour leurs patterns colorés et distingués, ainsi que pour leur ophiophagie. En effet, ces espèces s'attaquent à d'autres espèces de serpent afin de s'alimenter. Ces deux espèces partagent leur habitat et vivent en Amérique du Nord, dans des prairies ou des clairières.
+
 ## But
 
 <!--% Rédigez le but de ce rapport en 2 phrases.-->
+
+Le but de cette analyse est de déterminer si la morphologie et les patterns des juvéniles influencent l'attaque de serpents adultes. Le temps avant l'attaque est également mesuré afin de déterminer si les attaques surviennent rapidement ou non.
 
 ## Matériel et méthodes
 
 <!--% Cette section doit comprendre deux parties. La première partie doit expliciter les données employées et la seconde traiter des analyses réalisées et des logiciels employés.-->
 
+Les données ont été collectées par *Wu Nicholas* *et al* et sont en accès libre (MIT Licence, <https://doi.org/10.5281/zenodo.5399271>)**.** Toutes les informations sur les données, le déroulé des expériences et le dictionnaire des données sont disponibles dans l'article.
+
+Différentes régressions linéaires et modèles linéaires sont utilisés afin de modéliser les données. Au préalable, une description des données est réalisée pour les représenter. Le seuil $\alpha$ de tous les tests est fixé à l'avance à 5%.
+
+L'analyse est réalisée avec le logiciel R (`r R.version.string`) et en particulier le package {modelit} version `r packageVersion("modelit")` avec la [SciViews Box 2025](https://www.sciviews.org/software/svbox/) dans [Saturn Cloud](https://saturncloud.io/) (Linux Ubuntu 22.04).
+
 ## Résultats
 
 <!--% Présentez les deux modèles les plus pertinents que vous avez sélectionnés. Structurez la section en deux parties avec deux titres de niveau trois.-->
+
+```{r setup, include=FALSE}
+# Ceci est nécessaire pour les tests SDD, ne pas utiliser dans un "vrai" projet
+if (!"tools:tests" %in% search())
+  source(here::here("tests/tools_tests.R"), attach(NULL, name = "tools:tests"))
+# Configure Knitr to use AGG as graphic device
+knitr::opts_chunk$set(dev = "ragg_png")
+
+# Configuration de l'environnement
+SciViews::R("model")
+```
+
+```{r import}
+# Lecture des données
+snakerev <- read("data/snake.rds")
+# Tableau des premières et dernières lignes
+tabularise$headtail(snakerev)
+skimr::skim(snakerev)
+snakerev<-smutate(snakerev, juvenile_sex = as.factor(juvenile_sex), pattern = as.factor(pattern), painted = as.factor(painted), pred_attempt = as.factor(juvenile_sex), prey_species = as.factor(prey_species), adult_sex  = as.factor(adult_sex)
+)
+```
+
+### Modèle ...
+
+```{r}
+
+```
+
+### Modèle...
+
+```{r}
+
+```
 
 ## Discussion et Conclusion
 
